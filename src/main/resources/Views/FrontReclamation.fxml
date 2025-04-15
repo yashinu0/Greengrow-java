@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.FrontReclamationController"
+            prefHeight="600.0" prefWidth="800.0"
+            styleClass="main-container"
+            stylesheets="@../Styles/reclamation-form.css">
+    
+    <VBox fx:id="formContainer" spacing="20" alignment="TOP_CENTER"
+          styleClass="form-container"
+          AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="40.0" 
+          AnchorPane.rightAnchor="40.0" AnchorPane.bottomAnchor="30.0">
+        
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
+        
+        <VBox alignment="CENTER" spacing="10" styleClass="header-container">
+            <Label text="Soumettre une Réclamation" 
+                   styleClass="form-title"/>
+            <Label text="Nous sommes là pour vous aider"
+                   styleClass="form-subtitle"/>
+            <Separator styleClass="header-separator"/>
+        </VBox>
+        
+        <VBox spacing="8">
+            <Label fx:id="typeLabel" text="Type de Réclamation *" 
+                   styleClass="field-label"/>
+            <ComboBox fx:id="typeComboBox" maxWidth="Infinity"
+                      styleClass="form-combo-box"/>
+            <Label fx:id="typeErrorLabel" 
+                   styleClass="error-label"
+                   managed="${typeErrorLabel.visible}"/>
+        </VBox>
+        
+        <VBox spacing="8" VBox.vgrow="ALWAYS">
+            <Label fx:id="messageLabel" text="Votre Message *" 
+                   styleClass="field-label"/>
+            <TextArea fx:id="messageField" prefRowCount="6" wrapText="true" 
+                      styleClass="form-text-area"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="messageErrorLabel" 
+                       styleClass="error-label"
+                       managed="${messageErrorLabel.visible}"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="characterCountLabel" 
+                       styleClass="counter-label"/>
+            </HBox>
+        </VBox>
+        
+        <VBox spacing="15" alignment="CENTER">
+            <Button fx:id="submitButton" text="Envoyer la Réclamation" 
+                    onAction="#handleSubmit"
+                    styleClass="submit-button"
+                    prefWidth="300"/>
+            
+            <Label fx:id="statusLabel" 
+                   styleClass="status-label"/>
+        </VBox>
+    </VBox>
+</AnchorPane> 

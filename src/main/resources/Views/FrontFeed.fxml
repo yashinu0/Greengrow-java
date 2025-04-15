@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.FrontFeedController"
+            stylesheets="@../Styles/feedback.css"
+            styleClass="main-container"
+            prefHeight="700.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);">
+    
+    <VBox spacing="25" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" 
+          AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+        
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+        
+        <!-- En-tête -->
+        <VBox spacing="10" alignment="CENTER">
+            <Text styleClass="title" text="Formulaire de Feedback" 
+                  style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            
+            <Text styleClass="description" text="Nous apprécions vos commentaires pour améliorer nos services"
+                  style="-fx-font-size: 16px; -fx-fill: #6c757d;"/>
+        </VBox>
+        
+        <!-- Formulaire -->
+        <VBox spacing="20" maxWidth="600" 
+              style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);">
+            
+            <!-- Nom -->
+            <VBox spacing="8">
+                <Label text="Nom *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextField fx:id="nameField" 
+                          promptText="Votre nom complet"
+                          style="-fx-pref-height: 40; -fx-background-radius: 5;"/>
+                <Label fx:id="nameErrorLabel" styleClass="error-label"/>
+            </VBox>
+            
+            <!-- Email -->
+            <VBox spacing="8">
+                <Label text="Email *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextField fx:id="emailField" 
+                          promptText="Votre adresse email"
+                          style="-fx-pref-height: 40; -fx-background-radius: 5;"/>
+                <Label fx:id="emailErrorLabel" styleClass="error-label"/>
+            </VBox>
+            
+            <!-- Sujet -->
+            <VBox spacing="8">
+                <Label text="Sujet *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextField fx:id="subjectField" 
+                          promptText="Le sujet de votre message"
+                          style="-fx-pref-height: 40; -fx-background-radius: 5;"/>
+                <Label fx:id="subjectErrorLabel" styleClass="error-label"/>
+            </VBox>
+            
+            <!-- Message -->
+            <VBox spacing="8">
+                <Label text="Message *" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <TextArea fx:id="commentField" 
+                         promptText="Votre message (minimum 10 caractères)"
+                         prefRowCount="4" 
+                         wrapText="true"
+                         style="-fx-background-radius: 5;"/>
+                <HBox spacing="10" alignment="BASELINE_LEFT">
+                    <Label fx:id="commentErrorLabel" styleClass="error-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="characterCountLabel" styleClass="character-count"/>
+                </HBox>
+            </VBox>
+            
+            <!-- Bouton de soumission -->
+            <Button fx:id="submitButton" 
+                    text="Envoyer le feedback" 
+                    onAction="#handleSubmit"
+                    prefHeight="45"
+                    maxWidth="Infinity"
+                    style="-fx-background-radius: 5;"/>
+                    
+            <!-- Note -->
+            <Label text="* Tous les champs sont obligatoires" 
+                   style="-fx-font-size: 12px; -fx-text-fill: #6c757d;"/>
+        </VBox>
+    </VBox>
+</AnchorPane> 

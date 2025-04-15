@@ -1,0 +1,335 @@
+package Controllers;
+
+import Entities.Reclamation;
+import Services.ReclamationService;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Priority;
+
+import java.net.URL;
+import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+
+public class FrontReclamationController implements Initializable {
+    @FXML private ComboBox<String> typeComboBox;
+    @FXML private TextArea messageField;
+    @FXML private Button submitButton;
+    @FXML private VBox formContainer;
+    @FXML private Label statusLabel;
+    @FXML private Label typeLabel;
+    @FXML private Label messageLabel;
+    @FXML private Label characterCountLabel;
+    @FXML private Label messageErrorLabel;
+    @FXML private Label typeErrorLabel;
+    
+    private final ReclamationService reclamationService = new ReclamationService();
+    private static final int MAX_MESSAGE_LENGTH = 1000;
+    private static final int MIN_MESSAGE_LENGTH = 10;
+    private final BooleanProperty isSubmitting = new SimpleBooleanProperty(false);
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setupUI();
+        setupTypeComboBox();
+        setupTextLimits();
+        setupFormValidation();
+        setupErrorLabels();
+    }
+
+    private void setupUI() {
+        // Style the form container
+        formContainer.setSpacing(15);
+        formContainer.setPadding(new Insets(20));
+        formContainer.setStyle("-fx-background-color: white; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
+
+        // Style labels with required field indicator
+        typeLabel.setText("Type de Réclamation *");
+        messageLabel.setText("Message *");
+        typeLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        messageLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        
+        // Style error labels
+        messageErrorLabel.setStyle("-fx-text-fill: #dc3545; -fx-font-size: 12px;");
+        typeErrorLabel.setStyle("-fx-text-fill: #dc3545; -fx-font-size: 12px;");
+        messageErrorLabel.setVisible(false);
+        typeErrorLabel.setVisible(false);
+
+        // Style the character count
+        characterCountLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #666666;");
+        
+        // Style fields
+        messageField.setWrapText(true);
+        messageField.setPrefRowCount(5);
+        messageField.setPromptText("Décrivez votre problème en détail (minimum " + MIN_MESSAGE_LENGTH + " caractères)");
+        
+        // Style the submit button
+        submitButton.setStyle("""
+            -fx-background-color: #4CAF50;
+            -fx-text-fill: white;
+            -fx-font-weight: bold;
+            -fx-font-size: 14px;
+            -fx-padding: 10 20;
+            -fx-background-radius: 5;
+            -fx-cursor: hand;
+        """);
+    }
+
+    private void setupTypeComboBox() {
+        typeComboBox.setItems(FXCollections.observableArrayList(
+            "Problème de Livraison",
+            "Produit Défectueux",
+            "Produit Non Conforme",
+            "Autre"
+        ));
+        typeComboBox.setPromptText("Sélectionnez le type de réclamation");
+        
+        // Add validation listener
+        typeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            validateType();
+            updateSubmitButtonState();
+        });
+    }
+
+    private void setupTextLimits() {
+        messageField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > MAX_MESSAGE_LENGTH) {
+                messageField.setText(oldValue);
+            }
+            updateCharacterCount();
+            validateMessage();
+            updateSubmitButtonState();
+        });
+    }
+
+    private void setupErrorLabels() {
+        messageErrorLabel.setVisible(false);
+        typeErrorLabel.setVisible(false);
+    }
+
+    private void validateType() {
+        boolean isValid = typeComboBox.getValue() != null && !typeComboBox.getValue().isEmpty();
+        typeErrorLabel.setVisible(!isValid);
+        typeErrorLabel.setText(isValid ? "" : "Veuillez sélectionner un type de réclamation");
+        typeComboBox.setStyle(isValid ? "" : "-fx-border-color: #dc3545;");
+    }
+
+    private void validateMessage() {
+        String message = messageField.getText();
+        boolean isValid = message != null && message.length() >= MIN_MESSAGE_LENGTH;
+        messageErrorLabel.setVisible(!isValid);
+        
+        if (message == null || message.isEmpty()) {
+            messageErrorLabel.setText("Le message est requis");
+        } else if (message.length() < MIN_MESSAGE_LENGTH) {
+            messageErrorLabel.setText("Le message doit contenir au moins " + MIN_MESSAGE_LENGTH + " caractères");
+        }
+        
+        messageField.setStyle(isValid ? "" : "-fx-border-color: #dc3545;");
+    }
+
+    private void updateCharacterCount() {
+        int currentLength = messageField.getText().length();
+        int remainingChars = MAX_MESSAGE_LENGTH - currentLength;
+        String labelText = String.format("Caractères restants: %d", remainingChars);
+        characterCountLabel.setText(labelText);
+        
+        if (currentLength < MIN_MESSAGE_LENGTH) {
+            characterCountLabel.setStyle("-fx-text-fill: #dc3545;");
+        } else if (remainingChars < 100) {
+            characterCountLabel.setStyle("-fx-text-fill: #ffc107;");
+        } else {
+            characterCountLabel.setStyle("-fx-text-fill: #666666;");
+        }
+    }
+
+    private void updateSubmitButtonState() {
+        boolean isValid = isFormValid();
+        submitButton.setDisable(!isValid || isSubmitting.get());
+        
+        if (isValid) {
+            submitButton.setStyle("""
+                -fx-background-color: #4CAF50;
+                -fx-text-fill: white;
+                -fx-font-weight: bold;
+                -fx-font-size: 14px;
+                -fx-padding: 10 20;
+                -fx-background-radius: 5;
+                -fx-cursor: hand;
+            """);
+        } else {
+            submitButton.setStyle("""
+                -fx-background-color: #cccccc;
+                -fx-text-fill: white;
+                -fx-font-weight: bold;
+                -fx-font-size: 14px;
+                -fx-padding: 10 20;
+                -fx-background-radius: 5;
+            """);
+        }
+    }
+
+    private boolean isFormValid() {
+        String message = messageField.getText();
+        return typeComboBox.getValue() != null && 
+               !typeComboBox.getValue().isEmpty() &&
+               message != null && 
+               message.length() >= MIN_MESSAGE_LENGTH &&
+               message.length() <= MAX_MESSAGE_LENGTH;
+    }
+
+    @FXML
+    private void handleSubmit() {
+        if (!isFormValid()) {
+            validateType();
+            validateMessage();
+            return;
+        }
+
+        Reclamation reclamation = createReclamation();
+        submitReclamationAsync(reclamation);
+    }
+
+    private void showValidationError() {
+        StringBuilder errors = new StringBuilder();
+        if (typeComboBox.getValue() == null) {
+            errors.append("Please select a type of reclamation.\n");
+        }
+        if (messageField.getText().isEmpty()) {
+            errors.append("Please enter a message.\n");
+        }
+        if (messageField.getText().length() > MAX_MESSAGE_LENGTH) {
+            errors.append(String.format("Message cannot exceed %d characters.\n", MAX_MESSAGE_LENGTH));
+        }
+        
+        showErrorAlert("Validation Error", errors.toString());
+    }
+
+    private Reclamation createReclamation() {
+        Reclamation reclamation = new Reclamation();
+        reclamation.setUtilisateur_id(1); // Default user ID temporarily
+        reclamation.setProduit_id(-1);    // Temporary placeholder value
+        reclamation.setDescription_rec(typeComboBox.getValue());
+        reclamation.setMessage_reclamation(messageField.getText());
+        reclamation.setStatut_rec("Pending");
+        reclamation.setDate_rec(new java.util.Date());
+        
+        return reclamation;
+    }
+
+    private void submitReclamationAsync(Reclamation reclamation) {
+        isSubmitting.set(true);
+        updateStatus("Submitting reclamation...");
+        formContainer.setDisable(true);
+
+        CompletableFuture.runAsync(() -> {
+            reclamationService.addReclamation(reclamation);
+        }).thenRunAsync(() -> {
+            showSuccessAlert();
+            clearForm();
+            formContainer.setDisable(false);
+            isSubmitting.set(false);
+            updateStatus("");
+        }, Platform::runLater).exceptionally(e -> {
+            Platform.runLater(() -> {
+                showErrorAlert("Error", "Failed to submit reclamation: " + e.getMessage());
+                formContainer.setDisable(false);
+                isSubmitting.set(false);
+                updateStatus("Submission failed. Please try again.");
+            });
+            return null;
+        });
+    }
+
+    private void showSuccessAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Votre message a été envoyé avec succès.");
+        
+        // Style the alert dialog
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("""
+            -fx-background-color: white;
+            -fx-padding: 20;
+        """);
+        
+        // Add custom button styling
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        okButton.setStyle("""
+            -fx-background-color: #4CAF50;
+            -fx-text-fill: white;
+            -fx-font-weight: bold;
+            -fx-padding: 8 15;
+        """);
+        
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        
+        // Style the error alert
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("""
+            -fx-background-color: white;
+            -fx-padding: 20;
+        """);
+        
+        alert.showAndWait();
+    }
+
+    private void clearForm() {
+        typeComboBox.setValue(null);
+        messageField.clear();
+        updateCharacterCount();
+        setupErrorLabels();
+        messageField.setStyle("");
+        typeComboBox.setStyle("");
+    }
+
+    private void disableForm(boolean disable) {
+        formContainer.setDisable(disable);
+        submitButton.setDisable(disable);
+    }
+
+    private void updateStatus(String message) {
+        Platform.runLater(() -> {
+            statusLabel.setText(message);
+            statusLabel.setStyle("-fx-text-fill: " + (message.isEmpty() ? "#666666" : "#2c3e50"));
+        });
+    }
+
+    private void setupFormValidation() {
+        // Initial validation
+        validateType();
+        validateMessage();
+        updateSubmitButtonState();
+        
+        // Add listeners for real-time validation
+        messageField.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal) { // When focus is lost
+                validateMessage();
+            }
+        });
+        
+        typeComboBox.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal) { // When focus is lost
+                validateType();
+            }
+        });
+    }
+} 
