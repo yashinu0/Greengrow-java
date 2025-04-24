@@ -216,5 +216,139 @@
 
 /* Style des titres de section (par exemple "Information") */
 
+/* === Cercle logo === */
+.cercle {
+    -fx-background-color: white;
+    -fx-background-radius: 100%; /* Cercle parfait */
+    -fx-border-radius: 100%;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.2), 4, 0.0, 0, 2);
+}
+
+/* === Section de présentation === */
+.sectionFront {
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* Blanc semi-transparent */
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-padding: 100px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0.0, 0, 2);
+}
+
+/* === Tous les Labels dans la section === */
+.sectionFront Label {
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 14.5px;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-font-weight: bold; /* <--- ici on met tout en gras */
+    -fx-wrap-text: true;
+}
+
+
+/* === Style particulier pour le premier label (titre) === */
+.label-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #13803c;
+}
+
+
+.sectionFront Label:hover {
+    -fx-text-fill: #1e8449;
+    -fx-cursor: hand;
+}
+.optionLabel {
+    -fx-background-color: white;
+    -fx-padding: 5 10;
+    -fx-border-color: green;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: green;
+}
+
+.optionLabel:hover {
+    -fx-background-color: #e6ffe6;
+}
+.navbar {
+    -fx-background-color: #2E8B57;
+    -fx-padding: 10px 20px;
+}
+
+.navbar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.section-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E8B57;
+}
+
+.section-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555;
+}
+
+.card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0.0, 0, 2);
+}
+
+.card-title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E8B57;
+}
+
+.cta-button {
+    -fx-background-color: #2E8B57;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.cta-button:hover {
+    -fx-background-color: #256D48;
+}
+.footer {
+    -fx-background-color: #2E8B57;
+    -fx-padding: 20px;
+}
+
+.footer-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c7a7b;
+}
+
+.text-field {
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-background-radius: 5;
+}
+
 
 

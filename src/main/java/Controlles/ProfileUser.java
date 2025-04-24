@@ -224,7 +224,7 @@ public class ProfileUser {
     }
     @FXML
     void homefx(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FrontEnd.fxml"));
 
         try {
             Parent root = loader.load();

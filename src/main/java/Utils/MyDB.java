@@ -5,35 +5,64 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyDB {
-
-    String url="jdbc:mysql://localhost:3306/greengrow";
-    String user="root";
-    String password="";
+    private static final String URL = "jdbc:mysql://localhost:3306/greengrow";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
     private Connection con;
-    private static MyDB instanc;
+    private static MyDB instance;
 
     private MyDB() {
         try {
-            con= DriverManager.getConnection(url,user,password);
-            System.out.println("Connected to database");
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Create a new connection
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connected to database successfully");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());;
+            System.err.println("Database connection error: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.println("MySQL JDBC Driver not found: " + e.getMessage());
         }
-
     }
 
-    public static MyDB getInstance(){
-        if(instanc == null){
-            instanc= new MyDB();
+    public static MyDB getInstance() {
+        if (instance == null) {
+            synchronized (MyDB.class) {
+                if (instance == null) {
+                    instance = new MyDB();
+                }
+            }
         }
-        return instanc;
+        return instance;
     }
 
     public Connection getCon() {
+        try {
+            // Check if connection is closed or null
+            if (con == null || con.isClosed()) {
+                System.out.println("Reconnecting to database...");
+                con = DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error getting connection: " + e.getMessage());
+            try {
+                // Try to reconnect
+                con = DriverManager.getConnection(URL, USER, PASSWORD);
+            } catch (SQLException ex) {
+                System.err.println("Failed to reconnect: " + ex.getMessage());
+            }
+        }
         return con;
     }
 
-    public void setCon(Connection con) {
-        this.con = con;
+    public void closeConnection() {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.close();
+                System.out.println("Database connection closed");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error closing connection: " + e.getMessage());
+        }
     }
 }

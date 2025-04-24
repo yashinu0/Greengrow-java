@@ -1,14 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane prefHeight="666.0" prefWidth="1145.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.FrontEnd">
+   <children>
+      <Pane prefHeight="60.0" prefWidth="1145.0" style="-fx-background-color: #2E8B57;">
+         <children>
+            <Label layoutX="10.0" layoutY="15.0" styleClass="navbar-title" text="🌿 Green Grow" />
+            <Button layoutX="186.0" layoutY="10.0" styleClass="nav-button" text="Accueil" onAction="#showHome" />            <Button layoutX="308.0" layoutY="10.0" onAction="#InscFront" styleClass="nav-button" text="Inscription" />
+            <Button layoutX="460.0" layoutY="10.0" onAction="#FrontProduit" styleClass="nav-button" text="Produits" />
+            <Button layoutX="1060.0" layoutY="10.0" onAction="#loginFront" styleClass="nav-button" text="Login" />
+         </children>
+      </Pane>
 
+      <ScrollPane layoutY="60.0" prefHeight="609.0" prefWidth="1145.0">
+         <content>
+            <AnchorPane minHeight="1700.0" prefHeight="1802.0" prefWidth="1145.0">
+               <children>
+
+                  <!-- Section Produits (initialement cachée) -->
+                  <VBox fx:id="productsSection" layoutX="14.0" layoutY="14.0" prefWidth="1117.0" spacing="10.0" visible="false">
+                     <children>
+                        <Label styleClass="section-title" text="Nos Produits" />
+                        
+                        <!-- Search and Filter Controls -->
+                        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+                           <TextField fx:id="searchBar" promptText="Rechercher un produit..." prefWidth="300" />
+                           <ComboBox fx:id="filterCondition" prefWidth="150" />
+                           <Button fx:id="sortButton" text="Trier" onAction="#sortProducts" />
+                        </HBox>
+                        
+                        <FlowPane fx:id="productsFlowPane" hgap="20.0" vgap="20.0" prefWidth="1117.0" />
+                        <HBox fx:id="paginationControls" alignment="CENTER" spacing="10.0" styleClass="pagination-box">
+                           <children>
+                              <Button fx:id="prevPageButton" onAction="#previousPage" text="Précédent" />
+                              <Label fx:id="pageInfo" text="Page 1" />
+                              <Button fx:id="nextPageButton" onAction="#nextPage" text="Suivant" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <!-- Section Accueil (affichée par défaut) -->
+                  <VBox fx:id="homeSection" layoutX="14.0" layoutY="14.0" prefWidth="1117.0" spacing="20.0" alignment="TOP_CENTER">
+                     <children>
+
+                        <!-- Image principale -->
+                        <ImageView fitHeight="500.0" fitWidth="1000.0" preserveRatio="true">
+                           <image>
+                              <Image url="@images/smart-farming-with-agriculture-iot.jpg" />
+                           </image>
+                        </ImageView>
+
+                        <!-- Présentation avec logo -->
+                        <HBox spacing="20.0" alignment="CENTER">
+                           <children>
+                              <ImageView fitHeight="141.0" fitWidth="174.0" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <Label styleClass="section-title" text="Bienvenue sur Green Grow" />
+                                    <Label styleClass="section-subtitle" text="Plateforme dédiée à l'agriculture intelligente et connectée" />
+                                    <Label maxWidth="700" text="Surveillez vos cultures et améliorez vos rendements en temps réel." wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <!-- Offres IoT -->
+                        <Label styleClass="section-title" text="Nos Offres IoT" />
+
+                        <HBox alignment="CENTER" spacing="40.0">
+                           <children>
+                              <!-- Capteur Humidité -->
+                              <VBox alignment="CENTER" spacing="10.0" prefWidth="200.0" styleClass="card">
+                                 <children>
+                                    <ImageView fitHeight="70.0" fitWidth="70.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/product_img1.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="card-title" text="Capteur Humidité" />
+                                    <Label maxWidth="180" text="Mesurez l'humidité du sol en temps réel" wrapText="true" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Capteur Température -->
+                              <VBox alignment="CENTER" spacing="10.0" prefWidth="200.0" styleClass="card">
+                                 <children>
+                                    <ImageView fitHeight="70.0" fitWidth="70.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/product_img2.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="card-title" text="Capteur Température" />
+                                    <Label maxWidth="180" text="Suivi précis de la température ambiante" wrapText="true" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Station Météo -->
+                              <VBox alignment="CENTER" spacing="10.0" prefWidth="200.0" styleClass="card">
+                                 <children>
+                                    <ImageView fitHeight="70.0" fitWidth="70.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/product_img3.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="card-title" text="Station Météo" />
+                                    <Label maxWidth="180" text="Données météo en temps réel" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <!-- Bouton Contact -->
+                        <Button styleClass="cta-button" text="📬 Contactez-nous" />
+
+                        <!-- Avis Clients -->
+                        <Label styleClass="section-title" text="Avis de nos clients" />
+
+                        <HBox alignment="CENTER" spacing="40.0">
+                           <children>
+                              <!-- Témoignage 1 -->
+                              <VBox alignment="TOP_CENTER" spacing="10.0" prefWidth="300.0" styleClass="testimonial-card">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/icons8-utilisateur-100.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="testimonial-text" text="« Grâce à Green Grow, j'ai doublé ma production ! »" wrapText="true" />
+                                    <Label styleClass="testimonial-author" text="- Marie, Agricultrice" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Témoignage 2 -->
+                              <VBox alignment="TOP_CENTER" spacing="10.0" prefWidth="300.0" styleClass="testimonial-card">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/icons8-utilisateur-100.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="testimonial-text" text="« Une solution simple et efficace pour suivre mes cultures. »" wrapText="true" />
+                                    <Label styleClass="testimonial-author" text="- Ahmed, Producteur Bio" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Témoignage 3 -->
+                              <VBox alignment="TOP_CENTER" spacing="10.0" prefWidth="300.0" styleClass="testimonial-card">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/icons8-utilisateur-100.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="testimonial-text" text="« L'interface est intuitive et les capteurs très fiables. »" wrapText="true" />
+                                    <Label styleClass="testimonial-author" text="- Sophie, Ingénieure Agronome" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <!-- Pied de page -->
+                        <HBox alignment="CENTER" styleClass="footer">
+                           <Label styleClass="footer-text" text="© 2025 Green Grow. Tous droits réservés." />
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>

@@ -174,8 +174,45 @@ public class utilisateurService implements InterfaceCRUD<utilisateur> {
         }
         return null;
     }
+    public utilisateur findByEmail(String email) {
+        String sql = "SELECT * FROM utilisateur WHERE email_user = ?";
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, email);
 
-
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return new utilisateur(
+                        rs.getInt("id_user"),
+                        rs.getString("nom_user"),
+                        rs.getString("prenom_user"),
+                        rs.getString("email_user"),
+                        rs.getString("mot_de_passe_user"),
+                        rs.getString("role_user"),
+                        rs.getString("adresse_user"),
+                        rs.getString("code_postal_user"),
+                        rs.getString("telephone_user"),
+                        rs.getString("ville_user"),
+                        rs.getBoolean("is_active")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean updatePassword(String email, String newPassword) {
+        String req = "UPDATE utilisateur SET mot_de_passe_user = ? WHERE email_user = ?";
+        try (PreparedStatement pst = con.prepareStatement(req)) {
+            pst.setString(1, newPassword);
+            pst.setString(2, email);
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Erreur updatePassword: " + e.getMessage());
+            return false;
+        }
+    }
 
 }
         

@@ -2,6 +2,7 @@ package Controlles;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import Entites.utilisateur;
@@ -14,8 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
 import javafx.stage.Stage;
+
+import Utils.sendEmail;
 
 public class login {
 
@@ -31,15 +33,12 @@ public class login {
     @FXML
     private PasswordField mdpFx;
 
-
     @FXML
     void initialize() {
-
     }
 
     @FXML
     void annulerfx(ActionEvent event) {
-
     }
 
     @FXML
@@ -55,7 +54,6 @@ public class login {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProfileUser.fxml"));
                 try {
                     Parent root = loader.load();
-
                     ProfileUser controller = loader.getController();
                     controller.setCurrentUserId(u.getId_user());
                     controller.setNomfx(u.getNom_user());
@@ -73,9 +71,8 @@ public class login {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListUser.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard.fxml"));
                 try {
                     Parent root = loader.load();
                     Stage stage = (Stage) emailfx.getScene().getWindow();
@@ -85,7 +82,6 @@ public class login {
                     e.printStackTrace();
                 }
             }
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur de connexion");
@@ -96,21 +92,79 @@ public class login {
     }
 
     @FXML
-    void ajouterFx(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterUtilisateur.fxml"));
-
+    void ajouterFx(ActionEvent event) {
         try {
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/AjouterUtilisateur.fxml"));
             Stage stage = (Stage) emailfx.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    @FXML
+    void oubliefx(ActionEvent event) {
+        String email = emailfx.getText().trim();
 
+        if (email.isEmpty()) {
+            showAlert("Erreur", "Veuillez entrer votre email");
+            return;
+        }
 
+        utilisateurService us = new utilisateurService();
+        utilisateur user = us.findByEmail(email);
 
+        if (user == null) {
+            showAlert("Erreur", "Aucun compte associé à cet email");
+            return;
+        }
+
+        String verificationCode = generateVerificationCode();
+        sendEmail send = new sendEmail();
+        if (send.sendVerificationEmail(email, verificationCode)) {
+            System.out.println("Code envoyé à l'utilisateur : " + verificationCode);
+        }
+
+        loadCodeVerificationScreen(email, verificationCode);
+    }
+
+    private String generateVerificationCode() {
+        return String.format("%06d", new Random().nextInt(999999));
+    }
+
+    private void loadCodeVerificationScreen(String email, String code) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CodeVerification.fxml"));
+            Parent root = loader.load();
+
+            CodeVerification controller = loader.getController();
+            controller.setUserEmailAndCode(email, code);
+
+            Stage stage = (Stage) emailfx.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void oubliefx1(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/ForgotPassword.fxml"));
+            Stage stage = (Stage) emailfx.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
