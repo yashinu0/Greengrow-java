@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="Controlles.CategoryController">
+    <VBox spacing="10"
+          AnchorPane.topAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0"
+          AnchorPane.bottomAnchor="0">
+
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+
+        <TableView fx:id="tableCategories" onMouseClicked="#tableClicked">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
+                <TableColumn fx:id="colDescription" text="Description" prefWidth="200"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Nom:"/>
+                <TextField fx:id="txtNom" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Description:"/>
+                <TextField fx:id="txtDescription" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="10">
+            <Button text="Ajouter" onAction="#ajouterCategorie" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 30; -fx-border-radius: 30;"/>
+            <Button text="Modifier" onAction="#modifierCategorie" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 30; -fx-border-radius: 30;"/>
+            <Button text="Supprimer" onAction="#supprimerCategorie" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 30; -fx-border-radius: 30;"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

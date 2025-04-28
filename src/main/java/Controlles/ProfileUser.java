@@ -15,6 +15,7 @@ import Entites.utilisateur;
 import Services.utilisateurService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -58,6 +59,7 @@ public class ProfileUser {
     private TextField villefx;
 
     private int currentUserId;  // ID de l'utilisateur en cours
+
 
     // Setters pour injecter les données
     public void setAdressfx(String adressfx) {
@@ -224,7 +226,7 @@ public class ProfileUser {
     }
     @FXML
     void homefx(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FrontEnd.fxml"));
 
         try {
             Parent root = loader.load();
@@ -241,8 +243,40 @@ public class ProfileUser {
             e.printStackTrace();
         }
     }
-
+    @FXML
+    void showHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/FrontEnd.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    @FXML
+    public void InscFront(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/AjouterUtilisateur.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void FrontProduit(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/produit.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 
 

@@ -1,0 +1,32 @@
+.breadcrumb {
+    -fx-padding: 5 0;
+}
+
+.breadcrumb-item {
+    -fx-text-fill: #6c757d;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.breadcrumb-item:hover {
+    -fx-text-fill: #2c3e50;
+    -fx-underline: true;
+}
+
+.breadcrumb-separator {
+    -fx-fill: #6c757d;
+    -fx-font-size: 14px;
+}
+
+.button.view-button {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button.view-button:hover {
+    -fx-background-color: #5a6268;
+} 

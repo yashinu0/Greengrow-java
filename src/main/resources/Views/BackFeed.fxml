@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #f8f9fa;" 
+      xmlns="http://javafx.com/javafx/23.0.1" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="Controlles.BackFeedController"
+      stylesheets="@../Styles/backfeed.css">
+    <!-- Header Section -->
+    <VBox spacing="15" style="-fx-padding: 20;">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="10">
+                <Text styleClass="header-text" text="Gestion des Feedbacks" />
+                <HBox spacing="5" styleClass="breadcrumb">
+                    <Label styleClass="breadcrumb-item" text="Tableau de bord" />
+                    <Text styleClass="breadcrumb-separator" text="/" />
+                    <Label styleClass="breadcrumb-item" text="Feedbacks" />
+                </HBox>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" promptText="Rechercher..." styleClass="search-field" />
+            <Button fx:id="refreshButton" text="Actualiser" styleClass="action-button" onAction="#handleRefresh" />
+        </HBox>
+
+        <!-- Status Filters -->
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <VBox fx:id="allBox" styleClass="status-box">
+                <Text fx:id="allCount" styleClass="header-text" />
+                <Label text="Tous" styleClass="subheader-text" />
+            </VBox>
+            <VBox fx:id="processedBox" styleClass="status-box">
+                <Text fx:id="processedCount" styleClass="header-text" style="-fx-fill: #28a745;" />
+                <Label text="Traités" styleClass="subheader-text" />
+            </VBox>
+            <VBox fx:id="unprocessedBox" styleClass="status-box">
+                <Text fx:id="unprocessedCount" styleClass="header-text" style="-fx-fill: #dc3545;" />
+                <Label text="Non traités" styleClass="subheader-text" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Feedbacks Container -->
+    <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+        <VBox fx:id="feedbacksContainer" spacing="15" style="-fx-padding: 20;">
+            <!-- Les cartes de feedback seront ajoutées dynamiquement ici -->
+        </VBox>
+    </ScrollPane>
+</VBox>

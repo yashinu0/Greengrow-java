@@ -5,31 +5,37 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyDB {
-
-    String url="jdbc:mysql://localhost:3306/greengrow";
-    String user="root";
-    String password="";
+    private static final String URL = "jdbc:mysql://localhost:3306/greengrow";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
     private Connection con;
-    private static MyDB instanc;
+    private static MyDB instance;
 
     private MyDB() {
         try {
-            con= DriverManager.getConnection(url,user,password);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connected to database");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
         }
-
     }
 
-    public static MyDB getInstance(){
-        if(instanc == null){
-            instanc= new MyDB();
+    public static MyDB getInstance() {
+        if (instance == null) {
+            instance = new MyDB();
         }
-        return instanc;
+        return instance;
     }
 
     public Connection getCon() {
+        try {
+            if (con == null || con.isClosed()) {
+                con = DriverManager.getConnection(URL, USER, PASSWORD);
+                System.out.println("Reconnected to database");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error reconnecting to database: " + e.getMessage());
+        }
         return con;
     }
 

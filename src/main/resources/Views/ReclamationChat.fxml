@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controlles.ReclamationChatController"
+            stylesheets="@../css/style.css"
+            prefHeight="600.0" prefWidth="800.0">
+    
+    <VBox spacing="10" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" 
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        
+        <!-- En-tête -->
+        <HBox styleClass="chat-header" alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <Label fx:id="titleLabel" styleClass="chat-title" text="Discussion de la réclamation"/>
+        </HBox>
+        
+        <!-- Zone de messages -->
+        <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="chat-scroll">
+            <VBox fx:id="messagesContainer" spacing="10" styleClass="messages-container">
+                <padding>
+                    <Insets top="10" right="20" bottom="10" left="20"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+        
+        <!-- Zone de saisie -->
+        <HBox spacing="10" alignment="CENTER" styleClass="message-input-container">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <TextArea fx:id="messageInput" 
+                      promptText="Tapez votre message ici..." 
+                      wrapText="true"
+                      prefRowCount="2"
+                      HBox.hgrow="ALWAYS"/>
+            <Button fx:id="sendButton" 
+                    text="Envoyer" 
+                    onAction="#handleSend"
+                    styleClass="send-button"/>
+        </HBox>
+    </VBox>
+</AnchorPane> 

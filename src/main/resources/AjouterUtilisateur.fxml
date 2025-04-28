@@ -11,47 +11,47 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.AjouterUtilisateur">
+<AnchorPane prefHeight="664.0" prefWidth="1145.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.AjouterUtilisateur">
    <children>
-      <Pane prefHeight="630.0" prefWidth="450.0" style="-fx-background-color: #ccffcc;" stylesheets="@css/style.css">
+      <Pane layoutX="-6.0" layoutY="59.0" prefHeight="656.0" prefWidth="575.0" style="-fx-background-color: #ccffcc;" stylesheets="@css/style.css">
          <children>
-            <ImageView fitHeight="536.0" fitWidth="562.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="536.0" fitWidth="654.0" layoutX="20.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/app-agriculture-technologie-numerique-agriculture-intelligente_776674-1142726.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="127.0" layoutY="41.0" styleClass="smart-farming-text" text="connectez-vous pour suivre vos cultures" />
-            <Label layoutX="107.0" layoutY="69.0" styleClass="smart-farming-text" text="gérer vos commandes et optimiser vos récoltes" />
-            <Label layoutX="135.0" layoutY="14.0" styleClass="smart-farming-text" text="Bienvenue sur votre espace Green Grow " textFill="#e9fee6" />
-            <ImageView fitHeight="80.0" fitWidth="85.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="218.0" layoutY="41.0" styleClass="smart-farming-text" text="connectez-vous pour suivre vos cultures" />
+            <Label layoutX="196.0" layoutY="69.0" styleClass="smart-farming-text" text="gérer vos commandes et optimiser vos récoltes" />
+            <Label layoutX="220.0" layoutY="14.0" styleClass="smart-farming-text" text="Bienvenue sur votre espace Green Grow " textFill="#e9fee6" />
+            <ImageView fitHeight="80.0" fitWidth="113.0" layoutX="54.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
          </children></Pane>
-      <Pane layoutX="450.0" layoutY="-1.0" prefHeight="630.0" prefWidth="400.0" style="-fx-background-color: #e9fee6;">
+      <Pane layoutX="569.0" layoutY="60.0" prefHeight="656.0" prefWidth="575.0" style="-fx-background-color: #e9fee6;">
          <children>
-            <Label layoutX="165.0" layoutY="88.0" prefHeight="35.0" prefWidth="113.0" styleClass="h1" stylesheets="@css/style.css" text="Inscription">
+            <Label layoutX="252.0" layoutY="88.0" prefHeight="35.0" prefWidth="113.0" styleClass="h1" stylesheets="@css/style.css" text="Inscription">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="30.0" layoutY="140.0" styleClass="info" stylesheets="@css/style.css" text="Nom" />
-            <Label layoutX="30.0" layoutY="192.0" styleClass="info" stylesheets="@css/style.css" text="Prenom" />
-            <Label layoutX="30.0" layoutY="236.0" styleClass="info" stylesheets="@css/style.css" text="Email" />
-            <Label layoutX="30.0" layoutY="282.0" styleClass="info" stylesheets="@css/style.css" text="Mot de passe" />
-            <Label layoutX="25.0" layoutY="334.0" styleClass="info" stylesheets="@css/style.css" text="Confirmer Mot De Passe" />
-            <Label layoutX="31.0" layoutY="382.0" styleClass="info" stylesheets="@css/style.css" text="Telephone" />
-            <TextField fx:id="nom_user" layoutX="185.0" layoutY="129.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="prenom_user" layoutX="185.0" layoutY="178.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="email_user" layoutX="185.0" layoutY="225.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="adresse_user" layoutX="20.0" layoutY="462.0" prefHeight="37.0" prefWidth="113.0" promptText="Adresse" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="code_postal_user" layoutX="296.0" layoutY="466.0" prefHeight="37.0" prefWidth="80.0" promptText="Code" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="telephone_user" layoutX="184.0" layoutY="374.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="ville_user" layoutX="148.0" layoutY="465.0" prefHeight="37.0" prefWidth="127.0" promptText="Ville" styleClass="textfield" stylesheets="@css/style.css" />
-            <Button layoutX="232.0" layoutY="541.0" mnemonicParsing="false" onAction="#ajouterU" prefHeight="44.0" prefWidth="127.0" style="-fx-font-size: 20; -fx-padding: 10;" styleClass="button" stylesheets="@css/style.css" text="Envoyer" />
-            <Button layoutX="52.0" layoutY="541.0" mnemonicParsing="false" onAction="#annuler" prefHeight="44.0" prefWidth="127.0" style="-fx-font-size: 20; -fx-padding: 10;" styleClass="button" stylesheets="@css/style.css" text="Annuler" />
-            <ImageView fitHeight="80.0" fitWidth="100.0" layoutX="166.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="127.0" layoutY="140.0" styleClass="info" stylesheets="@css/style.css" text="Nom" />
+            <Label layoutX="127.0" layoutY="192.0" styleClass="info" stylesheets="@css/style.css" text="Prenom" />
+            <Label layoutX="127.0" layoutY="236.0" styleClass="info" stylesheets="@css/style.css" text="Email" />
+            <Label layoutX="127.0" layoutY="282.0" styleClass="info" stylesheets="@css/style.css" text="Mot de passe" />
+            <Label layoutX="122.0" layoutY="334.0" styleClass="info" stylesheets="@css/style.css" text="Confirmer Mot De Passe" />
+            <Label layoutX="128.0" layoutY="382.0" styleClass="info" stylesheets="@css/style.css" text="Telephone" />
+            <TextField fx:id="nom_user" layoutX="282.0" layoutY="129.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="prenom_user" layoutX="282.0" layoutY="178.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="email_user" layoutX="282.0" layoutY="225.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="adresse_user" layoutX="117.0" layoutY="462.0" prefHeight="37.0" prefWidth="113.0" promptText="Adresse" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="code_postal_user" layoutX="393.0" layoutY="461.0" prefHeight="37.0" prefWidth="80.0" promptText="Code" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="telephone_user" layoutX="281.0" layoutY="374.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="ville_user" layoutX="245.0" layoutY="461.0" prefHeight="37.0" prefWidth="127.0" promptText="Ville" styleClass="textfield" stylesheets="@css/style.css" />
+            <Button layoutX="343.0" layoutY="555.0" mnemonicParsing="false" onAction="#ajouterU" prefHeight="44.0" prefWidth="127.0" style="-fx-font-size: 20; -fx-padding: 10;" styleClass="button" stylesheets="@css/style.css" text="Envoyer" />
+            <Button layoutX="122.0" layoutY="555.0" mnemonicParsing="false" onAction="#annuler" prefHeight="44.0" prefWidth="127.0" style="-fx-font-size: 20; -fx-padding: 10;" styleClass="button" stylesheets="@css/style.css" text="Annuler" />
+            <ImageView fitHeight="80.0" fitWidth="100.0" layoutX="263.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icon.png" />
                </image>
@@ -59,11 +59,20 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <Label layoutX="23.0" layoutY="435.0" styleClass="info" stylesheets="@css/style.css" text="Adresse" />
-            <Label layoutX="162.0" layoutY="442.0" styleClass="info" stylesheets="@css/style.css" text="Ville" />
-            <Label layoutX="297.0" layoutY="442.0" styleClass="info" stylesheets="@css/style.css" text="Code Postal" />
-            <PasswordField fx:id="mot_de_passe_user" layoutX="184.0" layoutY="277.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <PasswordField fx:id="cpwd_user" layoutX="185.0" layoutY="329.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <Label layoutX="124.0" layoutY="435.0" styleClass="info" stylesheets="@css/style.css" text="Adresse" />
+            <Label layoutX="253.0" layoutY="437.0" styleClass="info" stylesheets="@css/style.css" text="Ville" />
+            <Label layoutX="390.0" layoutY="436.0" styleClass="info" stylesheets="@css/style.css" text="Code Postal" />
+            <PasswordField fx:id="mot_de_passe_user" layoutX="281.0" layoutY="277.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <PasswordField fx:id="cpwd_user" layoutX="282.0" layoutY="329.0" styleClass="textfield" stylesheets="@css/style.css" />
+         </children>
+      </Pane>
+      <Pane prefHeight="60.0" prefWidth="1145.0" style="-fx-background-color: #2E8B57;">
+         <children>
+            <Label layoutX="10.0" layoutY="15.0" styleClass="navbar-title" stylesheets="@css/style.css" text="🌿 Green Grow" />
+            <Button layoutX="186.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#FrontEndFx" styleClass="nav-button" stylesheets="@css/style.css" text="Accueil" />
+            <Button layoutX="1060.0" layoutY="10.0" onAction="#loginFront" styleClass="nav-button" stylesheets="@css/style.css" text="Login" />
+            <Button layoutX="308.0" layoutY="10.0" onAction="#InscFront" prefHeight="40.0" prefWidth="92.0" styleClass="nav-button" stylesheets="@css/style.css" text="Inscription" />
+            <Button layoutX="460.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="nav-button" stylesheets="@css/style.css" text="Produits" />
          </children>
       </Pane>
    </children>
