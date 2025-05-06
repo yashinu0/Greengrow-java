@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1145.0" stylesheets="@../Styles/reclamation-user.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.ReclamationUserController">
+    <children>
+        <!-- Navbar -->
+        <Pane prefHeight="60.0" prefWidth="1145.0" style="-fx-background-color: linear-gradient(to right, #2E8B57, #3CB371); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 3);">
+            <children>
+                <Label layoutX="10.0" layoutY="15.0" styleClass="navbar-title" text="🌿 Green Grow" onMouseClicked="#accueilFront" style="-fx-cursor: hand; -fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" />
+                <Button fx:id="plusButton" layoutX="1080.0" layoutY="10.0" onAction="#handlePlusButton" style="-fx-background-color: white; -fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15px;" text="+" />
+                <Label fx:id="nomLabel" layoutX="889.0" layoutY="17.0" prefHeight="30.0" prefWidth="67.0" styleClass="navbar-title" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+                <Label fx:id="prenomLabel" layoutX="968.0" layoutY="17.0" prefHeight="30.0" prefWidth="67.0" styleClass="navbar-title" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+            </children>
+        </Pane>
+
+        <!-- Contenu principal -->
+        <VBox layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="1145.0" spacing="20" style="-fx-background-color: #f5f5f5; -fx-padding: 20;">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="backButton" onAction="#handleBack" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20px; -fx-padding: 5px 20px;" text="Retour" />
+            </HBox>
+
+            <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2E8B57;" text="Mes Réclamations" />
+            
+            <ScrollPane fitToWidth="true" prefHeight="450.0" prefWidth="1012.0" style="-fx-background: #f5f5f5; -fx-border-color: transparent;">
+                <FlowPane fx:id="reclamationsContainer" hgap="20" prefHeight="447.0" prefWidth="986.0" prefWrapLength="1000" style="-fx-padding: 10;" vgap="20">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                </FlowPane>
+            </ScrollPane>
+        </VBox>
+
+        <!-- Menu utilisateur -->
+        <VBox fx:id="userMenuBox" layoutX="1015.0" layoutY="57.0" prefHeight="113.0" prefWidth="137.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #2E8B57; -fx-border-width: 1px; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" visible="false">
+            <children>
+                <Button onAction="#viewProfile" prefHeight="35.0" prefWidth="118.0" text="👤 Profil" style="-fx-background-color: transparent; -fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-cursor: hand;" />
+                <Button onAction="#handleLogout" prefHeight="35.0" prefWidth="118.0" text="🔓 Déconnexion" style="-fx-background-color: transparent; -fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-cursor: hand;" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

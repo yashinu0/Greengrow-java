@@ -5,35 +5,42 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyDB {
-
-    String url="jdbc:mysql://localhost:3306/greengrow";
-    String user="root";
-    String password="";
-    private Connection con;
-    private static MyDB instanc;
+    private static final String URL = "jdbc:mysql://localhost:3306/greengrow";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+    private static MyDB instance;
 
     private MyDB() {
-        try {
-            con= DriverManager.getConnection(url,user,password);
-            System.out.println("Connected to database");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());;
-        }
-
+        // Le constructeur ne crée plus de connexion
     }
 
-    public static MyDB getInstance(){
-        if(instanc == null){
-            instanc= new MyDB();
+    public static MyDB getInstance() {
+        if (instance == null) {
+            instance = new MyDB();
         }
-        return instanc;
+        return instance;
     }
 
+    /**
+     * Crée et retourne une nouvelle connexion à la base de données.
+     * Cette méthode crée une nouvelle connexion à chaque appel pour éviter les problèmes
+     * de connexions fermées.
+     * 
+     * @return Une nouvelle connexion à la base de données
+     */
     public Connection getCon() {
-        return con;
+        try {
+            Connection newCon = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Nouvelle connexion à la base de données établie");
+            return newCon;
+        } catch (SQLException e) {
+            System.out.println("Erreur de connexion à la base de données: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setCon(Connection con) {
-        this.con = con;
+        // This method is no longer used in the new implementation
     }
 }

@@ -1,57 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.ListUser">
-<children>
-   <ListView fx:id="ListUserFx" layoutX="300.0" layoutY="150.0" prefHeight="379.0" prefWidth="937.0" styleClass="my-list" stylesheets="@css/style.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="150.0">
-      <opaqueInsets>
-         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </opaqueInsets></ListView>
-   <Pane layoutX="301.0" layoutY="92.0" prefHeight="58.0" prefWidth="937.0" styleClass="header" stylesheets="@css/style.css" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="92.0">
-      <children>
-         <Label layoutX="14.0" layoutY="21.0" text="Nom" />
-         <Label layoutX="121.0" layoutY="21.0" text="Prénom" />
-         <Label layoutX="244.0" layoutY="21.0" text="Email" />
-         <Label layoutX="372.0" layoutY="21.0" prefHeight="18.0" prefWidth="118.0" text="Mot De Passe" />
-         <Label layoutX="522.0" layoutY="21.0" prefHeight="17.0" prefWidth="41.0" text="Role" />
-         <Label layoutX="631.0" layoutY="21.0" prefHeight="18.0" prefWidth="77.0" text="adresse" />
-         <Label layoutX="779.0" layoutY="20.0" prefHeight="18.0" prefWidth="98.0" text="Telephone" />
-      </children>
-   </Pane>
-   <Pane layoutX="-1.0" layoutY="93.0" prefHeight="432.0" prefWidth="298.0">
-      <children>
-         <Label layoutX="21.0" layoutY="14.0" prefHeight="17.0" prefWidth="107.0" styleClass="h1" stylesheets="@css/style.css" text="Information" />
-         <TextField fx:id="adressfx" layoutX="108.0" layoutY="295.0" styleClass="textfield" stylesheets="@css/style.css" />
-         <Label layoutX="26.0" layoutY="64.0" styleClass="info" stylesheets="@css/style.css" text="Nom" />
-         <Label layoutX="22.0" layoutY="116.0" styleClass="info" stylesheets="@css/style.css" text="Prénom" />
-         <Label layoutX="23.0" layoutY="164.0" styleClass="info" stylesheets="@css/style.css" text="Email" />
-         <Label layoutX="8.0" layoutY="209.0" prefHeight="28.0" prefWidth="118.0" styleClass="info" stylesheets="@css/style.css" text="Mot De Passe" />
-         <Label layoutX="20.0" layoutY="257.0" prefHeight="17.0" prefWidth="41.0" styleClass="info" stylesheets="@css/style.css" text="Role" />
-         <Label layoutX="13.0" layoutY="301.0" prefHeight="28.0" prefWidth="69.0" styleClass="info" stylesheets="@css/style.css" text="adresse" />
-         <Label layoutX="14.0" layoutY="339.0" prefHeight="28.0" prefWidth="89.0" styleClass="info" stylesheets="@css/style.css" text="Telephone" />
-         <Button layoutX="9.0" layoutY="392.0" mnemonicParsing="false" onAction="#updateFx" stylesheets="@css/style.css" text="Update" />
-         <Button layoutX="82.0" layoutY="391.0" mnemonicParsing="false" onAction="#suppfx" stylesheets="@css/style.css" text="Supprimer" />
-         <Button layoutX="169.0" layoutY="392.0" mnemonicParsing="false" onAction="#adfx" prefHeight="25.0" prefWidth="124.0" stylesheets="@css/style.css" text="Active / Désactive" />
-         <TextField fx:id="prenomfx" layoutX="105.0" layoutY="112.0" styleClass="textfield" stylesheets="@css/style.css" />
-         <TextField fx:id="emailfx" layoutX="105.0" layoutY="159.0" styleClass="textfield" stylesheets="@css/style.css" />
-         <TextField fx:id="rolefx" layoutX="108.0" layoutY="251.0" styleClass="textfield" stylesheets="@css/style.css" />
-         <TextField fx:id="pwdfx" layoutX="107.0" layoutY="206.0" styleClass="textfield" stylesheets="@css/style.css" />
-         <TextField fx:id="nomfx" layoutX="105.0" layoutY="64.0" styleClass="textfield" stylesheets="@css/style.css" />
-         <TextField fx:id="telfx" layoutX="107.0" layoutY="339.0" styleClass="textfield" stylesheets="@css/style.css" />
-      </children>
-   </Pane>
-      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="78.0" prefWidth="1236.0">
-         <children>
-            <Label layoutX="-45.0" prefHeight="82.0" prefWidth="520.0" styleClass="titre" stylesheets="@css/style.css" text="Liste Des Utilisateurs" />
-         </children>
-      </Pane>
-      <Button layoutX="7.0" layoutY="536.0" mnemonicParsing="false" onAction="#Historiquefx" prefHeight="35.0" prefWidth="282.0" styleClass="ajouter" stylesheets="@css/style.css" text="Historique" />
-</children>
+<AnchorPane prefHeight="621.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.ListUser">
+   <children>
+      <ScrollPane prefHeight="621.0" prefWidth="1000.0">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1013.0" prefWidth="1296.0">
+               <children>
+                  <Label layoutX="265.0" layoutY="-8.0" prefHeight="82.0" prefWidth="520.0" styleClass="titre" stylesheets="@css/style.css" text="Liste Des Utilisateurs" />
+                  <HBox layoutX="43.0" layoutY="92.0" spacing="10">
+                     <children>
+                        <TextField fx:id="searchField" promptText="Rechercher..." styleClass="textfield" stylesheets="@css/style.css" />
+                        <ComboBox fx:id="sortFieldCombo" promptText="Trier par" styleClass="combo-box" stylesheets="@css/style.css" />
+                        <ComboBox fx:id="sortOrderCombo" promptText="Ordre" styleClass="combo-box" stylesheets="@css/style.css" />
+                     </children>
+                  </HBox>
+                  <ListView fx:id="ListUserFx" layoutX="43.0" layoutY="201.0" prefHeight="242.0" prefWidth="896.0" styleClass="my-list" stylesheets="@css/style.css">
+                     <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </opaqueInsets>
+                  </ListView>
+                  <Label fx:id="pageLabel" layoutX="433.0" layoutY="456.0" styleClass="info" stylesheets="@css/style.css" text="Page 1 sur 1" />
+
+                  <HBox />
+
+                  <Pane layoutX="44.0" layoutY="146.0" prefHeight="58.0" prefWidth="896.0" styleClass="header" stylesheets="@css/style.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="21.0" text="Nom" />
+                        <Label layoutX="121.0" layoutY="21.0" text="Prénom" />
+                        <Label layoutX="244.0" layoutY="21.0" text="Email" />
+                        <Label layoutX="372.0" layoutY="21.0" prefHeight="18.0" prefWidth="118.0" text="Mot De Passe" />
+                        <Label layoutX="522.0" layoutY="21.0" prefHeight="17.0" prefWidth="41.0" text="Role" />
+                        <Label layoutX="631.0" layoutY="21.0" prefHeight="18.0" prefWidth="77.0" text="adresse" />
+                        <Label layoutX="779.0" layoutY="20.0" prefHeight="18.0" prefWidth="98.0" text="Telephone" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="42.0" layoutY="464.0" prefHeight="17.0" prefWidth="107.0" styleClass="h1" stylesheets="@css/style.css" text="Information" />
+                  <TextField fx:id="adressfx" layoutX="129.0" layoutY="745.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <Label layoutX="47.0" layoutY="514.0" styleClass="info" stylesheets="@css/style.css" text="Nom" />
+                  <Label layoutX="43.0" layoutY="566.0" styleClass="info" stylesheets="@css/style.css" text="Prénom" />
+                  <Label layoutX="44.0" layoutY="614.0" styleClass="info" stylesheets="@css/style.css" text="Email" />
+                  <Label layoutX="29.0" layoutY="659.0" prefHeight="28.0" prefWidth="118.0" styleClass="info" stylesheets="@css/style.css" text="Mot De Passe" />
+                  <Label layoutX="41.0" layoutY="707.0" prefHeight="17.0" prefWidth="41.0" styleClass="info" stylesheets="@css/style.css" text="Role" />
+                  <Label layoutX="34.0" layoutY="751.0" prefHeight="28.0" prefWidth="69.0" styleClass="info" stylesheets="@css/style.css" text="adresse" />
+                  <Label layoutX="35.0" layoutY="789.0" prefHeight="28.0" prefWidth="89.0" styleClass="info" stylesheets="@css/style.css" text="Telephone" />
+                  <Button layoutX="30.0" layoutY="842.0" mnemonicParsing="false" onAction="#updateFx" stylesheets="@css/style.css" text="Update" />
+                  <Button layoutX="103.0" layoutY="841.0" mnemonicParsing="false" onAction="#suppfx" stylesheets="@css/style.css" text="Supprimer" />
+                  <Button layoutX="190.0" layoutY="842.0" mnemonicParsing="false" onAction="#adfx" prefHeight="25.0" prefWidth="124.0" stylesheets="@css/style.css" text="Active / Désactive" />
+                  <TextField fx:id="prenomfx" layoutX="126.0" layoutY="562.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <TextField fx:id="emailfx" layoutX="126.0" layoutY="609.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <TextField fx:id="rolefx" layoutX="129.0" layoutY="701.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <TextField fx:id="pwdfx" layoutX="128.0" layoutY="656.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <TextField fx:id="nomfx" layoutX="126.0" layoutY="514.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <TextField fx:id="telfx" layoutX="128.0" layoutY="789.0" styleClass="textfield" stylesheets="@css/style.css" />
+                  <Button layoutX="41.0" layoutY="911.0" mnemonicParsing="false" onAction="#Historiquefx" prefHeight="35.0" prefWidth="282.0" styleClass="ajouter" stylesheets="@css/style.css" text="Historique" />
+                  <PieChart fx:id="pieChart" layoutX="450.0" layoutY="504.0" prefHeight="300.0" prefWidth="400.0" />
+                  <Button fx:id="prevButton" layoutX="346.0" layoutY="453.0" stylesheets="@css/style.css" text="Précédent" />
+                  <Button fx:id="nextButton" layoutX="533.0" layoutY="453.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@css/style.css" text="Suivant" />
+
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+
+   </children>
 </AnchorPane>

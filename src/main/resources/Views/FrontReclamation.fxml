@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="929.0" styleClass="main-container" stylesheets="@../Styles/reclamation-form.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.FrontReclamationController">
+    <children>
+        <Pane prefHeight="60.0" prefWidth="1169.0" style="-fx-background-color: linear-gradient(to right, #2E8B57, #3CB371); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 3);">
+            <children>
+                <Label layoutX="10.0" layoutY="15.0" style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" styleClass="navbar-title" text="🌿 Green Grow" />
+                <HBox alignment="CENTER_LEFT" layoutX="193.0" layoutY="11.0" spacing="30">
+                    <children>
+                        <Button layoutY="0.0" onAction="#accueilFront" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Accueil" />
+                        <Button layoutY="0.0" onAction="#InscFront" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Inscription" />
+                        <Button layoutY="0.0" onAction="#FrontProduit" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Produits" />
+                        <Button fx:id="mesReclamationsButton" layoutY="0.0" onAction="#handleMesReclamations" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Mes Réclamations" />
+                        <Button fx:id="supervisionButton" layoutY="0.0" onAction="#handleSupervision" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Supervision" />
+                    </children>
+                </HBox>
+                <Label fx:id="nomLabel" layoutX="852.0" layoutY="18.0" prefHeight="30.0" prefWidth="82.0" style="-fx-text-fill: white; -fx-font-weight: bold;" styleClass="navbar-title" />
+                <Label fx:id="prenomLabel" layoutX="925.0" layoutY="18.0" prefHeight="30.0" prefWidth="76.0" style="-fx-text-fill: white; -fx-font-weight: bold;" styleClass="navbar-title" />
+                <Button fx:id="plusButton" layoutX="1123.0" layoutY="10.0" onAction="#handlePlusButton" style="-fx-background-color: white; -fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15px;" text="+" />
+            </children>
+        </Pane>
+        <VBox fx:id="userMenuBox" layoutX="1015.0" layoutY="57.0" prefHeight="113.0" prefWidth="137.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #2E8B57; -fx-border-width: 1px; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" visible="false">
+            <children>
+                <Button onAction="#handleProfile" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: transparent; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="👤 Profil" />
+                <Button mnemonicParsing="false" style="-fx-background-color: white;" />
+                <Button onAction="#handleLogout" prefHeight="23.0" prefWidth="115.0" style="-fx-background-color: transparent; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="🔓 Déconnexion" />
+            </children>
+        </VBox>
+        <VBox fx:id="formContainer" alignment="TOP_CENTER" spacing="20" styleClass="form-container" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="80.0">
+            <padding>
+             <Insets bottom="30" left="40" right="40" top="30" />
+             </padding>
+        
+            <VBox alignment="CENTER" spacing="10" styleClass="header-container">
+                <Label styleClass="form-title" text="Soumettre une Réclamation" />
+                <Label styleClass="form-subtitle" text="Nous sommes là pour vous aider" />
+                <Separator styleClass="header-separator" />
+            </VBox>
+        
+            <VBox spacing="8">
+                <Label fx:id="typeLabel" styleClass="field-label" text="Type de Réclamation *" />
+                <ComboBox fx:id="typeComboBox" maxWidth="Infinity" styleClass="form-combo-box" />
+                <Label fx:id="typeErrorLabel" managed="${typeErrorLabel.visible}" styleClass="error-label" />
+            </VBox>
+        
+            <VBox spacing="8" VBox.vgrow="ALWAYS">
+                <Label fx:id="messageLabel" styleClass="field-label" text="Votre Message *" />
+                <TextArea fx:id="messageField" prefRowCount="6" styleClass="form-text-area" wrapText="true" />
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label fx:id="messageErrorLabel" managed="${messageErrorLabel.visible}" styleClass="error-label" />
+                     <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="characterCountLabel" styleClass="counter-label" />
+                </HBox>
+            </VBox>
+        
+            <VBox alignment="CENTER" spacing="15">
+                <Button fx:id="submitButton" onAction="#handleSubmit" prefWidth="300" styleClass="submit-button" text="Envoyer la Réclamation" />
+            
+                <Label fx:id="statusLabel" styleClass="status-label" />
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>

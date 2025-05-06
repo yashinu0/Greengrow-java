@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controlles.AlerteListController" spacing="10" style="-fx-padding: 20; -fx-background-color: white;"
+      prefWidth="600" prefHeight="500">
+
+    <Text text="Alert List" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
+
+    <Label fx:id="alerteSummaryLabel" style="-fx-font-size: 16; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+    <PieChart fx:id="alertePieChart" prefHeight="180" prefWidth="400"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Search..." style="-fx-pref-width: 180;"/>
+        <ComboBox fx:id="sortComboBox" promptText="Sort by..." style="-fx-pref-width: 120;"/>
+        <ComboBox fx:id="orderComboBox" promptText="Order" style="-fx-pref-width: 100;"/>
+    </HBox>
+
+    <VBox style="-fx-background-color: #fff; -fx-border-color: #2c3e50; -fx-border-radius: 12; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(44,62,80,0.08), 8,0,0,1); -fx-padding: 10;">
+        <ListView fx:id="alerteListView" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+                  VBox.vgrow="ALWAYS">
+            <!-- Remove prefHeight here and let VBox.vgrow handle it -->
+        </ListView>
+    </VBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="prevPageBtn" text="Prev" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 60;"/>
+        <Label fx:id="pageInfoLabel" text="Page 1 of 1" style="-fx-font-size: 14; -fx-text-fill: #2c3e50; -fx-font-weight: bold;"/>
+        <Button fx:id="nextPageBtn" text="Next" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 60;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Add" onAction="#handleAddAlerte" style="-fx-background-color: #43cea2; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80;"/>
+    </HBox>
+</VBox>

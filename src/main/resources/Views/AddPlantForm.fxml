@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Controlles.AddPlantController"
+      spacing="20" style="-fx-padding: 20;" alignment="TOP_CENTER">
+
+    <Label text="Add New Plant" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="10" vgap="10" style="-fx-padding: 10;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="150" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <!-- Plant Name -->
+        <Label text="Plant Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="plantNameField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+        <Text fx:id="nameError" fill="RED" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+
+        <!-- Plant Type -->
+        <Label text="Plant Type:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <ComboBox fx:id="plantTypeCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        <Text fx:id="typeError" fill="RED" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+
+        <!-- Location -->
+        <Label text="Location:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <RadioButton fx:id="indoorRadio" text="Indoor" />
+            <RadioButton fx:id="outdoorRadio" text="Outdoor" />
+        </HBox>
+
+        <!-- Light -->
+        <Label text="Light (%):" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <TextField fx:id="lightField" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        <Text fx:id="lightError" fill="RED" GridPane.rowIndex="3" GridPane.columnIndex="2" />
+
+        <!-- Humidity -->
+        <Label text="Humidity (%):" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <TextField fx:id="humidityField" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+        <Text fx:id="humidityError" fill="RED" GridPane.rowIndex="4" GridPane.columnIndex="2" />
+
+        <!-- Temperature -->
+        <Label text="Temperature (°C):" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+        <TextField fx:id="temperatureField" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+        <Text fx:id="tempError" fill="RED" GridPane.rowIndex="5" GridPane.columnIndex="2" />
+
+        <!-- Water -->
+        <Label text="Water (ml):" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+        <TextField fx:id="waterField" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+        <Text fx:id="waterError" fill="RED" GridPane.rowIndex="6" GridPane.columnIndex="2" />
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Add Plant" onAction="#handleAddPlant"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 10 20; -fx-background-radius: 5;" />
+        <Button text="Cancel" onAction="#handleCancel"
+                style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 10 20; -fx-background-radius: 5;" />
+        <Button text="Generate Random Data" onAction="#handleGenerateRandomData"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 10 20; -fx-background-radius: 5;" />
+    </HBox>
+</VBox> 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.chart.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="Controlles.ProduitController">
+    <VBox spacing="10"
+          AnchorPane.topAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0"
+          AnchorPane.bottomAnchor="0">
+
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+
+        <HBox spacing="20">
+            <!-- Left side - Form -->
+            <VBox spacing="10" prefWidth="600">
+                <TableView fx:id="tableProduits" onMouseClicked="#tableClicked" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
+                        <TableColumn fx:id="colDescription" text="Description" prefWidth="200"/>
+                        <TableColumn fx:id="colPrix" text="Prix" prefWidth="80"/>
+                        <TableColumn fx:id="colQuantite" text="Quantité" prefWidth="80"/>
+                        <TableColumn fx:id="colDisponibilite" text="Disponibilité" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <!-- Statistics Section -->
+                <TitledPane text="Statistiques des Produits" expanded="true">
+                    <HBox spacing="20">
+                        <VBox spacing="10">
+                            <Label text="Distribution par Catégorie" style="-fx-font-weight: bold;"/>
+                            <PieChart fx:id="categoryPieChart" prefWidth="300" prefHeight="300"/>
+                        </VBox>
+                        <VBox spacing="10">
+                            <Label text="Distribution par Disponibilité" style="-fx-font-weight: bold;"/>
+                            <BarChart fx:id="availabilityBarChart" prefWidth="300" prefHeight="300">
+                                <xAxis>
+                                    <CategoryAxis label="Disponibilité"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Nombre de Produits"/>
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+                </TitledPane>
+
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="Nom:"/>
+                        <TextField fx:id="txtNom" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Description:"/>
+                        <TextField fx:id="txtDescription" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Prix:"/>
+                        <TextField fx:id="txtPrix" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="Quantité:"/>
+                        <TextField fx:id="txtQuantite" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Disponibilité:"/>
+                        <ComboBox fx:id="comboDisponibilite" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Catégorie:"/>
+                        <ComboBox fx:id="comboCategories" prefWidth="150" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #cccccc; -fx-border-width: 2;"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="Localisation:"/>
+                        <Button text="Choisir sur carte" onAction="#openMap" style="-fx-background-color: #673AB7; -fx-text-fill: white;"/>
+                        <WebView fx:id="mapView" prefWidth="400" prefHeight="300"/>
+                        <Button text="Valider la localisation" onAction="#validateLocation" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <Button text="Ajouter" onAction="#ajouterProduit" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+                    <Button text="Modifier" onAction="#modifierProduit" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+                    <Button text="Supprimer" onAction="#supprimerProduit" style="-fx-background-color: #f44336; -fx-text-fill: white;"/>
+                    <Button text="Upload Image" onAction="#uploadImage" style="-fx-background-color: #FF9800; -fx-text-fill: white;"/>
+                </HBox>
+            </VBox>
+
+            <!-- Right side - Image preview -->
+            <VBox spacing="10" alignment="TOP_CENTER">
+                <Label text="Image Preview" style="-fx-font-weight: bold;"/>
+                <ImageView fx:id="imagePreview" fitHeight="200" fitWidth="200" preserveRatio="true">
+                    <image>
+                    </image>
+                </ImageView>
+                <Label fx:id="lblImagePath" text="No image selected" style="-fx-font-style: italic;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

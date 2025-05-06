@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="974.0" prefWidth="1201.0" style="-fx-background-color: #f8f9fa;" stylesheets="@../Styles/feed-details.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.ReclamationDetailsController">
+
+    <!-- Header Section -->
+    <VBox layoutX="20" layoutY="20" spacing="15">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="10">
+                <Text styleClass="header-text" text="Détails de la Réclamation" />
+                <HBox spacing="5" styleClass="breadcrumb">
+                    <Label onMouseClicked="#handleBackToList" styleClass="breadcrumb-item" text="Réclamations" />
+                    <Text styleClass="breadcrumb-separator" text="/" />
+                    <Label styleClass="breadcrumb-item" text="Détails" />
+                </HBox>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+        
+        <!-- Status Badge -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: #6c757d;" text="Statut:" />
+            <Label fx:id="statusLabel" styleClass="status-badge" />
+        </HBox>
+    </VBox>
+
+    <!-- Main Content -->
+    <HBox layoutX="24.0" layoutY="157.0" spacing="20" />
+   <!-- Reclamation Details Card -->
+   <VBox layoutX="451.0" layoutY="137.0" prefHeight="502.0" prefWidth="725.0" styleClass="card">
+       <HBox alignment="CENTER_LEFT" spacing="10" styleClass="card-header">
+           <Label style="-fx-font-size: 20px;" text="📝" />
+           <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2c3e50;" text="Détails de la Réclamation" />
+       </HBox>
+       <VBox spacing="20" styleClass="card-body">
+           <VBox spacing="10">
+               <Label styleClass="label-bold" text="ID de la réclamation" />
+               <Label fx:id="reclamationIdLabel" styleClass="label-normal" />
+           </VBox>
+           
+           <VBox spacing="10">
+               <Label styleClass="label-bold" text="Date de création" />
+               <Label fx:id="reclamationDateLabel" styleClass="label-normal" />
+           </VBox>
+           
+           <VBox spacing="10">
+               <Label styleClass="label-bold" text="Type de réclamation" />
+               <Label fx:id="reclamationTypeLabel" styleClass="label-normal" />
+           </VBox>
+           
+           <VBox spacing="10">
+               <Label styleClass="label-bold" text="Message" />
+               <TextArea fx:id="messageArea" editable="false" styleClass="text-area-readonly" wrapText="true" />
+               <Button fx:id="translateButton" onAction="#translateMessage" style="-fx-background-color: #007bff; -fx-text-fill: white;" text="Traduire en anglais" />
+           </VBox>
+           
+           <VBox spacing="10">
+               <Label styleClass="label-bold" text="Modifier le statut" />
+               <HBox spacing="10">
+                   <ComboBox fx:id="statusComboBox" prefHeight="25.0" prefWidth="322.0" styleClass="combo-box" />
+                   <Button fx:id="updateStatusButton" styleClass="primary-button" text="Mettre à jour" />
+               </HBox>
+           </VBox>
+       </VBox>
+   </VBox>
+      <Button fx:id="backButton1" layoutX="1067.0" layoutY="102.0" styleClass="link-button" text="Retour à la liste" />
+
+   <!-- Chat Section -->
+   <VBox layoutX="24.0" layoutY="660.0" prefHeight="311.0" prefWidth="584.0" styleClass="card">
+       <HBox alignment="CENTER_LEFT" spacing="10" styleClass="card-header">
+           <Label style="-fx-font-size: 20px;" text="💬" />
+           <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2c3e50;" text="Discussion" />
+       </HBox>
+       <VBox spacing="10" styleClass="card-body" VBox.vgrow="ALWAYS">
+           <ScrollPane fitToWidth="true" prefHeight="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+               <content>
+                   <AnchorPane>
+                       <VBox fx:id="messagesContainer" spacing="10" style="-fx-background-color: white; -fx-padding: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                   </AnchorPane>
+               </content>
+           </ScrollPane>
+           <HBox alignment="CENTER_LEFT" spacing="10">
+               <TextArea fx:id="messageInput" prefHeight="60.0" prefRowCount="2" promptText="Écrivez votre réponse ici..." wrapText="true" HBox.hgrow="ALWAYS" />
+               <Button fx:id="sendButton" minWidth="100.0" onAction="#sendMessage" styleClass="primary-button" text="Répondre" />
+           </HBox>
+       </VBox>
+   </VBox>
+
+   <!-- Chatbot History Section -->
+   <VBox layoutX="618.0" layoutY="660.0" prefHeight="311.0" prefWidth="558.0" styleClass="card">
+       <HBox alignment="CENTER_LEFT" spacing="10" styleClass="card-header">
+           <Label style="-fx-font-size: 20px;" text="🤖" />
+           <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2c3e50;" text="Historique Chatbot" />
+       </HBox>
+       <VBox spacing="10" styleClass="card-body" VBox.vgrow="ALWAYS">
+           <ScrollPane fitToWidth="true" prefHeight="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+               <content>
+                   <AnchorPane>
+                       <VBox fx:id="chatbotMessagesContainer" spacing="10" style="-fx-background-color: white; -fx-padding: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                   </AnchorPane>
+               </content>
+           </ScrollPane>
+       </VBox>
+   </VBox>
+
+   <!-- Right Column - Info Cards -->
+   <VBox layoutX="24.0" layoutY="145.0" spacing="20">
+       <!-- Client Information Card -->
+       <VBox prefWidth="400.0" styleClass="card">
+           <HBox alignment="CENTER_LEFT" spacing="10" styleClass="card-header">
+               <Label style="-fx-font-size: 20px;" text="👤" />
+               <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2c3e50;" text="Informations Client" />
+           </HBox>
+           <VBox spacing="15" styleClass="card-body">
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="ID Client:" />
+                   <Label fx:id="clientIdLabel" styleClass="label-normal" />
+               </HBox>
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="Email:" />
+                   <Label fx:id="clientEmailLabel" styleClass="label-normal" />
+               </HBox>
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="Nom et Prénom:" />
+                   <Label fx:id="clientNameLabel" styleClass="label-normal" />
+               </HBox>
+           </VBox>
+       </VBox>
+
+       <!-- Product Information Card -->
+       <VBox prefHeight="260.0" prefWidth="400.0" styleClass="card">
+           <HBox alignment="CENTER_LEFT" spacing="10" styleClass="card-header">
+               <Label style="-fx-font-size: 20px;" text="📦" />
+               <Label style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2c3e50;" text="Informations Produit" />
+           </HBox>
+           <VBox spacing="15" styleClass="card-body">
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="ID Produit:" />
+                   <Label fx:id="productIdLabel" styleClass="label-normal" />
+               </HBox>
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="Nom:" />
+                   <Label fx:id="productNameLabel" styleClass="label-normal" />
+               </HBox>
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="Prix:" />
+                   <Label fx:id="productPriceLabel" styleClass="label-normal" />
+               </HBox>
+               <HBox spacing="10">
+                   <Label styleClass="label-bold" text="Disponibilité:" />
+                   <Label fx:id="productAvailabilityLabel" styleClass="label-normal" />
+               </HBox>
+           </VBox>
+       </VBox>
+   </VBox>
+</AnchorPane>

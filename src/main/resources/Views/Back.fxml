@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controlles.BackController" style="-fx-background-color: #f4f4f4;">
+
+    <!-- Sidebar -->
+    <VBox style="-fx-background-color: #2c3e50; -fx-min-width: 250;" spacing="10">
+        <padding>
+            <Insets top="20" right="10" bottom="20" left="10"/>
+        </padding>
+
+        <!-- Title -->
+        <Label text="Dashboard" style="-fx-font-size: 24; -fx-text-fill: white; -fx-font-weight: bold;">
+            <VBox.margin>
+                <Insets bottom="20"/>
+            </VBox.margin>
+        </Label>
+
+        <!-- Dropdown/Accordion -->
+        <Accordion style="-fx-text-fill: white;">
+            <panes>
+                <!-- Gestion Supervision Section -->
+                <TitledPane text="Gestion Supervision">
+                    <VBox spacing="10" style="-fx-background-color: #2c3e50;">
+                        <Button text="Rendu" onAction="#showRenduMain" 
+                                style="-fx-background-color:rgb(24, 37, 48); -fx-text-fill: white; -fx-min-width: 200; -fx-cursor: hand;"/>
+                        <Button text="Alerte" onAction="#showAlerteMain"
+                                style="-fx-background-color: rgb(24, 37, 48); -fx-text-fill: white; -fx-min-width: 200; -fx-cursor: hand;"/>
+                    </VBox>
+                </TitledPane>
+            </panes>
+        </Accordion>
+    </VBox>
+
+    <!-- Main Content Area -->
+    <StackPane fx:id="contentArea" HBox.hgrow="ALWAYS" style="-fx-background-color: white;">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        
+        <!-- Welcome Text -->
+        <VBox alignment="CENTER">
+            <Text text="Welcome to Dashboard" style="-fx-font-size: 32; -fx-font-weight: bold;"/>
+            <Text text="Select an option from the sidebar" style="-fx-font-size: 18; -fx-fill: #666;"/>
+        </VBox>
+    </StackPane>
+
+</HBox> 

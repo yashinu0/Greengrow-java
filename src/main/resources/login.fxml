@@ -12,46 +12,47 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="802.0" styleClass="background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.login">
+<AnchorPane prefHeight="715.0" prefWidth="1144.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.login">
    <children>
-      <Pane layoutX="219.0" layoutY="121.0" prefHeight="425.0" prefWidth="379.0" styleClass="section" stylesheets="@css/style.css">
+      <Pane layoutX="304.0" layoutY="191.0" prefHeight="506.0" prefWidth="501.0" styleClass="section" stylesheets="@css/style.css">
          <children>
-            <ImageView fitHeight="116.0" fitWidth="99.0" layoutX="139.0" layoutY="-46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="116.0" fitWidth="99.0" layoutX="200.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icons8-utilisateur-100.png" />
                </image>
             </ImageView>
-            <Label layoutX="155.0" layoutY="82.0" prefHeight="17.0" prefWidth="55.0" styleClass="h1" stylesheets="@css/style.css" text="Login">
+            <Label layoutX="216.0" layoutY="82.0" prefHeight="17.0" prefWidth="55.0" styleClass="h1" stylesheets="@css/style.css" text="Login">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="150.0" styleClass="info" stylesheets="@css/style.css" text="Email" />
-            <Label layoutX="17.0" layoutY="215.0" styleClass="info" stylesheets="@css/style.css" text="Mot De Passe" />
-            <PasswordField fx:id="mdpFx" layoutX="134.0" layoutY="209.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <TextField fx:id="emailfx" layoutX="134.0" layoutY="152.0" styleClass="textfield" stylesheets="@css/style.css" />
-            <Button layoutX="37.0" layoutY="287.0" mnemonicParsing="false" onAction="#annulerfx" prefHeight="46.0" prefWidth="138.0" text="Annuler" />
-            <Button layoutX="210.0" layoutY="287.0" mnemonicParsing="false" onAction="#loginFx" prefHeight="46.0" prefWidth="145.0" text="Envoyer" />
-            <ImageView fitHeight="28.0" fitWidth="36.0" layoutX="284.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="78.0" layoutY="150.0" styleClass="info" stylesheets="@css/style.css" text="Email" />
+            <Label layoutX="78.0" layoutY="215.0" styleClass="info" stylesheets="@css/style.css" text="Mot De Passe" />
+            <PasswordField fx:id="mdpFx" layoutX="195.0" layoutY="209.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <TextField fx:id="emailfx" layoutX="195.0" layoutY="152.0" styleClass="textfield" stylesheets="@css/style.css" />
+            <Button layoutX="98.0" layoutY="287.0" mnemonicParsing="false" onAction="#annulerfx" prefHeight="46.0" prefWidth="138.0" text="Annuler" />
+            <Button layoutX="271.0" layoutY="287.0" mnemonicParsing="false" onAction="#loginFx" prefHeight="46.0" prefWidth="145.0" text="Envoyer" />
+            <ImageView fitHeight="28.0" fitWidth="36.0" layoutX="345.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icons8-nouveau-message-96.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="285.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="346.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icons8-mot-de-passe-52.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="18.0" fitWidth="28.0" layoutX="146.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="18.0" fitWidth="28.0" layoutX="207.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icons8-effacer-48%20(1).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="319.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="380.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icons8-envoyer-100.png" />
                </image>
                <effect>
+
                   <Lighting bumpInput="$null">
                      <light>
                         <Light.Distant />
@@ -59,7 +60,22 @@
                   </Lighting>
                </effect>
             </ImageView>
-            <Button layoutX="76.0" layoutY="359.0" mnemonicParsing="false" onAction="#ajouterFx" styleClass="ajouter" stylesheets="@css/style.css" text="Créer un nouveau compte" />
+            <Button layoutX="262.0" layoutY="378.0" mnemonicParsing="false" onAction="#ajouterFx" styleClass="ajouter" stylesheets="@css/style.css" text="Créer un nouveau compte" />
+            <Button layoutX="22.0" layoutY="378.0" mnemonicParsing="false" onAction="#oubliefx" prefHeight="45.0" prefWidth="224.0" styleClass="ajouter" stylesheets="@css/style.css" text="Oublier  Mot De Passe" />
+            <Button layoutX="152.0" layoutY="446.0" onAction="#loginWithGoogle" prefHeight="46.0" prefWidth="189.0" text="Se connecter avec Google">
+               <font>
+                  <Font size="21.0" />
+               </font></Button>
+
+         </children>
+      </Pane>
+      <Pane prefHeight="56.0" prefWidth="887.0" />
+      <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="60.0" prefWidth="1145.0" style="-fx-background-color: #2E8B57;">
+         <children>
+            <Label layoutX="10.0" layoutY="15.0" styleClass="navbar-title" text="🌿 Green Grow" />
+            <Button layoutX="186.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#FrontEndFx" styleClass="nav-button" text="Accueil" />
+            <Button layoutX="308.0" layoutY="10.0" onAction="#InscFrontFx" prefHeight="40.0" prefWidth="92.0" styleClass="nav-button" text="Inscription" />
+            <Button layoutX="460.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="nav-button" text="Produits" />
          </children>
       </Pane>
    </children>

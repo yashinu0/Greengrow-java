@@ -1,0 +1,148 @@
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 5;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 45;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #dee2e6;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center-left;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10 5;
+    -fx-font-size: 13;
+}
+
+.status-box:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-translate-y: -2;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 20;
+}
+
+.text-field:focused {
+    -fx-border-color: #2ecc71;
+    -fx-border-width: 2;
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+}
+
+.combo-box:focused {
+    -fx-border-color: #2ecc71;
+    -fx-border-width: 2;
+}
+
+.navbar-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 5 10;
+    -fx-border-radius: 5;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+#plusButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+#plusButton:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+#userMenuBox {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-color: gray;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+#userMenuBox .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 5 10;
+    -fx-alignment: center-left;
+}
+
+#userMenuBox .button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Style pour le bouton retour */
+#backButton {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+#backButton:hover {
+    -fx-background-color: #5a6268;
+}
+
+/* Style pour les labels du profil utilisateur */
+#nomLabel, #prenomLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+} 
