@@ -14,9 +14,9 @@
 
 ## Personnalisation
 
-- **Styles** : Modifiez `src/main/resources/styles/nature-theme.css` pour adapter l’apparence.
+- **Styles** : Modifiez `src/main/resources/styles/` pour adapter l’apparence.
 - **Images** : Placez vos images dans `src/main/resources/images/`.
-- **Ressources FXML** : Si vous utilisez des vues FXML, placez-les dans `src/main/resources/view/`.
+- **Ressources FXML** : Si vous utilisez des vues FXML, placez-les dans `src/main/resources/views/`.
 
 ---
 
@@ -28,6 +28,7 @@
 - ZXing (QR Code)
 - Hibernate (JPA)
 - JXMapViewer
+- Ollama AI
 
 ---
 
