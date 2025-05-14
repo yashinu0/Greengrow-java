@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Controlles.LivreurViewController"
+      stylesheets="@../styles/nature-theme.css">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Gestion des Livreurs" styleClass="window-title"/>
+
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" alignment="CENTER" styleClass="grid-pane">
+            <ImageView fx:id="photoLivreurImageView" fitHeight="200" fitWidth="200" preserveRatio="true" styleClass="image-view"/>
+            <Button text="Choisir une photo" onAction="#handleChoisirPhoto"/>
+        </VBox>
+
+        <VBox spacing="10" styleClass="grid-pane">
+            <GridPane hgap="10" vgap="10">
+                <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="nomLivreurTextField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Prénom:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="prenomLivreurTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Numéro:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="numeroLivreurTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="addresseLivreurTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Enregistrer" onAction="#handleEnregistrer"/>
+                <Button text="Annuler" onAction="#handleAnnuler"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

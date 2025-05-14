@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.DashboardController">
+    
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER" styleClass="navbar">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+            
+            <!-- Logo -->
+            <ImageView fitHeight="50" fitWidth="60" preserveRatio="true">
+                <image>
+                    <Image url="@../images/logo.png" />
+                </image>
+            </ImageView>
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Search Bar -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <TextField promptText="Rechercher..." styleClass="search-field" />
+                
+                <!-- User Menu -->
+                <Button onAction="#handleLogout" styleClass="logout-button" text="Déconnexion" />
+            </HBox>
+        </HBox>
+    </top>
+    
+    <!-- Left Sidebar -->
+    <left>
+        <VBox styleClass="sidebar">
+            <TreeView fx:id="sidebarMenu" prefHeight="465.0" prefWidth="210.0" showRoot="false">
+                <root>
+                    <TreeItem expanded="true" value="Main">
+                        <children>
+                            <TreeItem value="Dashboard" />
+                        </children>
+                    </TreeItem>
+                    <TreeItem expanded="true" value="Features">
+                        <children>
+                            <TreeItem value="User" />
+                            <TreeItem expanded="true" value="Contact">
+                                <children>
+                                    <TreeItem value="Feedbacks" />
+                                    <TreeItem value="Réclamations" />
+                                </children>
+                            </TreeItem>
+                            <TreeItem fx:id="commandesItem" value="Commandes" />
+                            <TreeItem expanded="true" value="Produit">
+                                <children>
+                                    <TreeItem value="Produit" />
+                                    <TreeItem value="Categories" />
+                                </children>
+                            </TreeItem>
+                            <TreeItem expanded="true" value="Supervision">
+                                <children>
+                                    <TreeItem value="Rendu" />
+                                    <TreeItem value="Alert" />
+                                </children>
+                            </TreeItem>
+                        </children>
+                    </TreeItem>
+                </root>
+            </TreeView>
+        </VBox>
+    </left>
+    
+    <!-- Main Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" prefWidth="1298.0" styleClass="content-area">
+            <!-- Content will be injected here -->
+        </StackPane>
+    </center>
+    
+</BorderPane>

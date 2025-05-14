@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1145.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.FrontEnd">
+   <children>
+      <Pane prefHeight="60.0" prefWidth="1170.0" style="-fx-background-color: linear-gradient(to right, #2E8B57, #3CB371); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 3);">
+         <children>
+            <Label layoutX="10.0" layoutY="15.0" style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" styleClass="navbar-title" text="🌿 Green Grow" />
+            <HBox alignment="CENTER_LEFT" layoutX="193.0" layoutY="11.0" spacing="30">
+                <children>
+                    <Button layoutY="0.0" onAction="#accueilFront" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Accueil" />
+                    <Button layoutY="0.0" onAction="#FrontProduit" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Produits" />
+                    <Button fx:id="mesReclamationsButton" layoutY="0.0" onAction="#handleMesReclamations" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Mes Réclamations" />
+                    <Button fx:id="supervisionButton" layoutY="0.0" onAction="#handleSupervision" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Supervision" />
+                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="800.0" layoutY="15.0" spacing="10" />
+            <Button fx:id="loginButton" layoutX="1019.0" layoutY="11.0" onAction="#loginFront" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-width: 0 0 2 0;" styleClass="nav-button" text="Login" />
+            <Button fx:id="plusButton" layoutX="1136.0" layoutY="10.0" onAction="#handlePlusButton" prefHeight="45.0" prefWidth="31.0" style="-fx-background-color: white; -fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 15px;" text="+" />
+            <Label fx:id="nomLabel" layoutX="967.0" layoutY="18.0" prefHeight="17.0" prefWidth="52.0" style="-fx-text-fill: white; -fx-font-weight: bold;" styleClass="info" stylesheets="@css/style.css" />
+            <Label fx:id="prenomLabel" layoutX="1035.0" layoutY="19.0" prefHeight="17.0" prefWidth="68.0" style="-fx-text-fill: white; -fx-font-weight: bold;" styleClass="info" stylesheets="@css/style.css" />
+            <StackPane layoutX="1080.0" layoutY="6.0">
+                <Circle fill="white" radius="27.0" />
+                <ImageView fx:id="avatarImage" fitHeight="41.0" fitWidth="50.0" style="-fx-background-radius: 25px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);" />
+            </StackPane>
+
+         </children>
+      </Pane>
+
+      <ScrollPane layoutY="60.0" prefHeight="610.0" prefWidth="1170.0" style="-fx-background: #f5f5f5;">
+         <content>
+            <AnchorPane minHeight="1700.0" prefHeight="1802.0" prefWidth="1162.0" style="-fx-background-color: #f5f5f5;">
+               <children>
+                  <!-- Section Produits -->
+                  <VBox fx:id="productsSection" layoutX="-3.0" layoutY="14.0" prefHeight="198.0" prefWidth="1163.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" visible="false">
+                     <children>
+                        <Label style="-fx-font-size: 24px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="section-title" text="Nos Produits" />
+                        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10;">
+                           <TextField fx:id="searchBar" prefWidth="300" promptText="Rechercher un produit..." style="-fx-background-radius: 20px; -fx-padding: 5px 15px;" />
+                           <ComboBox fx:id="filterCondition" prefWidth="150" style="-fx-background-radius: 20px;" />
+                           <Button fx:id="sortButton" onAction="#sortProducts" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 20px; -fx-padding: 5px 20px;" text="Trier" />
+                        </HBox>
+                        <FlowPane fx:id="productsFlowPane" hgap="20.0" prefWidth="1117.0" vgap="20.0" />
+                        <HBox fx:id="paginationControls" alignment="CENTER" spacing="10.0" styleClass="pagination-box">
+                           <children>
+                              <Button fx:id="prevPageButton" onAction="#previousPage" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 20px;" text="Précédent" />
+                              <Label fx:id="pageInfo" style="-fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="Page 1" />
+                              <Button fx:id="nextPageButton" onAction="#nextPage" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 20px;" text="Suivant" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <!-- Section Accueil -->
+                  <VBox fx:id="homeSection" alignment="TOP_CENTER" layoutX="5.0" layoutY="14.0" prefHeight="1318.0" prefWidth="1144.0" spacing="20.0">
+                     <children>
+                        <!-- Hero Section -->
+                        <StackPane prefHeight="500.0" prefWidth="1000.0">
+                           <ImageView fitHeight="500.0" fitWidth="1000.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 3);">
+                              <image>
+                                 <Image url="@images/smart-farming-with-agriculture-iot.jpg" />
+                              </image>
+                           </ImageView>
+                           <VBox alignment="CENTER" spacing="20" style="-fx-background-color: rgba(0,0,0,0.5); -fx-padding: 40;">
+                              <Label style="-fx-font-size: 48px; -fx-text-fill: white; -fx-font-weight: bold;" text="Agriculture Intelligente" />
+                              <Label style="-fx-font-size: 24px; -fx-text-fill: white;" text="Optimisez vos cultures avec nos solutions IoT" />
+                              <Button fx:id="decouvrirButton" onAction="#FrontProduit" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-font-size: 18px; -fx-padding: 15 30;" text="Découvrir nos produits" />
+                           </VBox>
+                        </StackPane>
+
+                        <!-- Statistiques Section -->
+                        <HBox alignment="CENTER" spacing="40" style="-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 10;">
+                           <children>
+                              <VBox alignment="CENTER" spacing="10">
+                                 <Label style="-fx-font-size: 36px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="500+" />
+                                 <Label style="-fx-font-size: 18px; -fx-text-fill: #666;" text="Agriculteurs Satisfaits" />
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="10">
+                                 <Label style="-fx-font-size: 36px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="1000+" />
+                                 <Label style="-fx-font-size: 18px; -fx-text-fill: #666;" text="Capteurs Installés" />
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="10">
+                                 <Label style="-fx-font-size: 18px; -fx-text-fill: #666;" text="Augmentation des Rendements" />
+                              </VBox>
+                              <Label style="-fx-font-size: 36px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="30%" />
+                           </children>
+                        </HBox>
+
+                        <!-- Présentation Section -->
+                        <HBox alignment="CENTER" prefWidth="1166.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                           <children>
+                              <ImageView fitHeight="141.0" fitWidth="174.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                 <image>
+                                    <Image url="@images/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <Label style="-fx-font-size: 28px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="section-title" text="Bienvenue sur Green Grow" />
+                                    <Label style="-fx-font-size: 18px; -fx-text-fill: #666;" styleClass="section-subtitle" text="Plateforme dédiée à l'agriculture intelligente et connectée" />
+                                    <Label maxWidth="700" style="-fx-text-fill: #666;" text="Surveillez vos cultures et améliorez vos rendements en temps réel grâce à nos solutions IoT innovantes. Notre plateforme vous permet de prendre des décisions éclairées basées sur des données précises." wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <!-- Fonctionnalités Section -->
+                        <Label style="-fx-font-size: 32px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="section-title" text="Nos Solutions" />
+                        <HBox alignment="CENTER" spacing="40.0">
+                           <children>
+                              <!-- Capteur Humidité -->
+                              <VBox alignment="CENTER" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0); -fx-transition: all 0.3s;" styleClass="card">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                       <image>
+                                          <Image url="@images/product_img1.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-font-size: 24px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="card-title" text="Capteur Humidité" />
+                                    <Label maxWidth="280" style="-fx-text-fill: #666;" text="Mesurez l'humidité du sol en temps réel et optimisez l'irrigation de vos cultures. Recevez des alertes lorsque l'humidité est trop basse ou trop élevée." wrapText="true" />
+                                    <Button onAction="#FrontProduit" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 20px; -fx-padding: 10 20;" text="En savoir plus" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Capteur Température -->
+                              <VBox alignment="CENTER" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="card">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                       <image>
+                                          <Image url="@images/product_img2.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-font-size: 24px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="card-title" text="Capteur Température" />
+                                    <Label maxWidth="280" style="-fx-text-fill: #666;" text="Suivez précisément la température ambiante et du sol. Protégez vos cultures des variations climatiques extrêmes." wrapText="true" />
+                                    <Button onAction="#FrontProduit" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 20px; -fx-padding: 10 20;" text="En savoir plus" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Station Météo -->
+                              <VBox alignment="CENTER" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="card">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                       <image>
+                                          <Image url="@images/product_img3.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-font-size: 24px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="card-title" text="Station Météo" />
+                                    <Label maxWidth="280" style="-fx-text-fill: #666;" text="Accédez à des données météo précises et localisées. Planifiez vos activités agricoles en fonction des conditions météorologiques." wrapText="true" />
+                                    <Button onAction="#FrontProduit" style="-fx-background-color: #2E8B57; -fx-text-fill: white; -fx-background-radius: 20px; -fx-padding: 10 20;" text="En savoir plus" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <!-- Témoignages Section -->
+                        <Label style="-fx-font-size: 32px; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" styleClass="section-title" text="Ce que disent nos clients" />
+                        <HBox alignment="CENTER" spacing="40.0">
+                           <children>
+                              <!-- Témoignage 1 -->
+                              <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="testimonial-card">
+                                 <children>
+                                    <ImageView fitHeight="80.0" fitWidth="80.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                       <image>
+                                          <Image url="@images/icons8-utilisateur-100.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-text-fill: #666; -fx-font-style: italic; -fx-font-size: 16px;" styleClass="testimonial-text" text="« Grâce à Green Grow, j'ai doublé ma production et optimisé ma consommation d'eau. Un investissement qui a changé ma façon de cultiver ! »" wrapText="true" />
+                                    <Label style="-fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 18px;" styleClass="testimonial-author" text="- Marie, Agricultrice" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Témoignage 2 -->
+                              <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="testimonial-card">
+                                 <children>
+                                    <ImageView fitHeight="80.0" fitWidth="80.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                       <image>
+                                          <Image url="@images/icons8-utilisateur-100.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-text-fill: #666; -fx-font-style: italic; -fx-font-size: 16px;" styleClass="testimonial-text" text="« Une solution simple et efficace pour suivre mes cultures. Les alertes en temps réel m'ont permis d'éviter plusieurs catastrophes. »" wrapText="true" />
+                                    <Label style="-fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 18px;" styleClass="testimonial-author" text="- Ahmed, Producteur Bio" />
+                                 </children>
+                              </VBox>
+
+                              <!-- Témoignage 3 -->
+                              <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="testimonial-card">
+                                 <children>
+                                    <ImageView fitHeight="80.0" fitWidth="80.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                       <image>
+                                          <Image url="@images/icons8-utilisateur-100.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-text-fill: #666; -fx-font-style: italic; -fx-font-size: 16px;" styleClass="testimonial-text" text="« L'interface est intuitive et les capteurs très fiables. Le support client est réactif et les mises à jour régulières améliorent constamment le service. »" wrapText="true" />
+                                    <Label style="-fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 18px;" styleClass="testimonial-author" text="- Sophie, Ingénieure Agronome" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+
+                        <!-- Call to Action Section -->
+                        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #2E8B57; -fx-padding: 40; -fx-background-radius: 10;">
+                           <Label style="-fx-font-size: 32px; -fx-text-fill: white; -fx-font-weight: bold;" text="Prêt à révolutionner votre agriculture ?" />
+                           <Label style="-fx-font-size: 18px; -fx-text-fill: white;" text="Rejoignez les centaines d'agriculteurs qui font confiance à Green Grow" />
+                           <HBox alignment="CENTER" spacing="20">
+                              <Button fx:id="contactezNousButton" onAction="#handleContactezNous" style="-fx-background-color: white; -fx-text-fill: #2E8B57; -fx-font-weight: bold; -fx-font-size: 16px; -fx-background-radius: 20px; -fx-padding: 15 30;" text="Contactez-nous" />
+                              <Button onAction="#FrontProduit" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-border-color: white; -fx-border-width: 2; -fx-background-radius: 20px; -fx-padding: 15 30;" text="Découvrir nos produits" />
+                           </HBox>
+                        </VBox>
+
+                        <!-- Footer -->
+                        <HBox alignment="CENTER" style="-fx-background-color: #1a5c3a; -fx-padding: 20px;" styleClass="footer">
+                           <children>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold;" styleClass="footer-text" text="© 2025 Green Grow. Tous droits réservés." />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <VBox fx:id="userMenuBox" layoutX="1015.0" layoutY="57.0" prefHeight="113.0" prefWidth="137.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #2E8B57; -fx-border-width: 1px; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" visible="false">
+         <children>
+            <Button onAction="#handleProfile" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: transparent; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="👤 Profil" />
+            <Button mnemonicParsing="false" style="-fx-background-color: white;" />
+            <Button onAction="#handleLogout" prefHeight="23.0" prefWidth="115.0" style="-fx-background-color: transparent; -fx-text-fill: #2E8B57; -fx-font-weight: bold;" text="🔓 Déconnexion" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controlles.AlerteController"
+            style="-fx-background-color: linear-gradient(to bottom, #e0e2e6, #bfc2c7);">
+
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #2c3e50, #3498db); -fx-padding: 18px 30px; -fx-background-radius: 16px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10,0,0,0);">
+            <Label text="GreenGrow" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 24px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2,0,0,1);" />
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox spacing="20" alignment="CENTER" style="-fx-padding: 0 0 0 0;">
+                <Button text="Home" onAction="#handleHomeButton" 
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-radius: 5px; -fx-padding: 8 16;" />
+                <Button text="Rendu" onAction="#handleRenduButton" 
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-radius: 5px; -fx-padding: 8 16;" />
+                <Button text="Alerte" onAction="#handleAlerteButton" 
+                        style="-fx-background-color: white; -fx-text-fill: #2c3e50; -fx-font-weight: bold; -fx-background-radius: 5px; -fx-padding: 8 16;" />
+            </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="0" style="-fx-background-color: transparent;">
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-padding: 20; -fx-background: transparent; -fx-control-inner-background: transparent;">
+                <VBox fx:id="alertListContainer" alignment="CENTER" spacing="20" style="-fx-background-color: transparent; -fx-padding: 30;" />
+        </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane> 

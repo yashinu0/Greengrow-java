@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Controlles.CarteController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER">
+        <ComboBox fx:id="livreurComboBox" promptText="Sélectionner un livreur" prefWidth="200"/>
+        <Button text="Centrer sur le livreur" onAction="#handleCentrerSurLivreur"/>
+        <Button text="Actualiser positions" onAction="#handleActualiserPositions"/>
+    </HBox>
+
+    <StackPane fx:id="mapContainer" VBox.vgrow="ALWAYS" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Dernière mise à jour : " />
+        <Label fx:id="derniereMiseAJourLabel" />
+    </HBox>
+</VBox>

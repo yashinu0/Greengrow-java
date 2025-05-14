@@ -15,10 +15,12 @@ import Entites.utilisateur;
 import Services.utilisateurService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -57,7 +59,13 @@ public class ProfileUser {
     @FXML
     private TextField villefx;
 
+    @FXML
+    private Label nomLabel;
+    @FXML
+    private Label prenomLabel;
+
     private int currentUserId;  // ID de l'utilisateur en cours
+
 
     // Setters pour injecter les données
     public void setAdressfx(String adressfx) {
@@ -95,11 +103,34 @@ public class ProfileUser {
     // Setter pour l'ID de l'utilisateur
     public void setCurrentUserId(int id) {
         this.currentUserId = id;
-        System.out.println("Current User ID: " + currentUserId);  // Vérifiez l'ID ici
+        System.out.println("Current User ID: " + currentUserId);
+        
+        // Récupérer et afficher les informations de l'utilisateur
+        utilisateurService us = new utilisateurService();
+        utilisateur currentUser = us.findByID(currentUserId);
+        
+        if (currentUser != null) {
+            // Mettre à jour les labels de la barre de navigation
+            nomLabel.setText(currentUser.getNom_user());
+            prenomLabel.setText(currentUser.getPrenom_user());
+            
+            // Mettre à jour les champs du formulaire
+            nomfx.setText(currentUser.getNom_user());
+            prenomfx.setText(currentUser.getPrenom_user());
+            emailfx.setText(currentUser.getEmail_user());
+            pwdfx.setText(currentUser.getMot_de_passe_user());
+            adressfx.setText(currentUser.getAdresse_user());
+            codefx.setText(currentUser.getCode_postal_user());
+            telfx.setText(currentUser.getTelephone_user());
+            villefx.setText(currentUser.getVille_user());
+        }
     }
 
     @FXML
     void initialize() {
+        // Initialiser les labels
+        nomLabel.setVisible(true);
+        prenomLabel.setVisible(true);
     }
 
     @FXML
@@ -223,26 +254,58 @@ public class ProfileUser {
         alert.showAndWait();
     }
     @FXML
-    void homefx(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Accueil.fxml"));
-
+    void showHome(ActionEvent event) {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FrontEnd.fxml"));
             Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Accueil");
+            FrontEnd controller = loader.getController();
+            controller.setCurrentUserId(currentUserId);
+            Stage stage = (Stage) nomfx.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.show();
-
-            Stage currentStage = (Stage) nomfx.getScene().getWindow();
-            currentStage.close();
-
+            stage.setTitle("Accueil");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Erreur lors du retour à l'accueil !");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    void showHome1(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/FrontEnd.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    @FXML
+    public void InscFront(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/AjouterUtilisateur.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    @FXML
+    private void FrontProduit(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/produit.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 
 

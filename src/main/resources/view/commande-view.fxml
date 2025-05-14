@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" alignment="TOP_CENTER" stylesheets="@../styles/nature-theme.css" xmlns:fx="http://javafx.com/fxml" fx:controller="Controlles.CommandeController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Gestion des Commandes" styleClass="window-title"/>
+
+    <VBox styleClass="grid-pane" spacing="15">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <GridPane hgap="15" vgap="15">
+            <Label text="ID Livreur:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="livreurIdComboBox" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Prix Total:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField fx:id="prixTotalField"/>
+                <Button text="🎲 Jouer à la Roulette" onAction="#handleJouerRoulette" styleClass="roulette-button"/>
+            </HBox>
+
+            <Label text="Statut:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="statutComboBox" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Mode de Paiement:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <ComboBox fx:id="modePaiementComboBox" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="0" bottom="0" left="0"/>
+            </padding>
+            <Button text="Ajouter" onAction="#handleAjouter"/>
+            <Button text="Modifier" onAction="#handleModifier"/>
+            <Button text="Supprimer" onAction="#handleSupprimer"/>
+            <Button text="Générer Facture" onAction="#handleGenererFacture"/>
+            <Button text="Statistiques" onAction="#handleAfficherStatistiques"/>
+            <Button text="Accueil" onAction="#handleRetourAccueil"/>
+        </HBox>
+    </VBox>
+
+    <VBox styleClass="grid-pane">
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="0" bottom="10" left="0"/>
+            </padding>
+            <Label text="Filtrer par:"/>
+            <ComboBox fx:id="filterTypeComboBox" prefWidth="120"/>
+            <Label text="Ordre:"/>
+            <ComboBox fx:id="orderComboBox" prefWidth="120"/>
+        </HBox>
+
+        <TableView fx:id="commandeTable" prefHeight="400">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="livreurIdColumn" text="ID Livreur" prefWidth="80"/>
+                <TableColumn fx:id="statutColumn" text="Statut" prefWidth="100"/>
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
+                <TableColumn fx:id="prixTotalColumn" text="Prix Total" prefWidth="100"/>
+                <TableColumn fx:id="modePaiementColumn" text="Mode de Paiement" prefWidth="120"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</VBox>

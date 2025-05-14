@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #f8f9fa;" stylesheets="@../Styles/backreclamation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlles.BackReclamationController">
+    <!-- Header Section -->
+    <VBox spacing="15" style="-fx-padding: 20;">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="10">
+                <Text styleClass="header-text" text="Gestion des Réclamations" />
+                <HBox spacing="5" styleClass="breadcrumb">
+                    <Label styleClass="breadcrumb-item" text="Tableau de bord" />
+                    <Text styleClass="breadcrumb-separator" text="/" />
+                    <Label styleClass="breadcrumb-item" text="Réclamations" />
+                </HBox>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" promptText="Rechercher..." styleClass="search-field" />
+            <Button fx:id="refreshButton" onAction="#handleRefresh" styleClass="action-button" text="Actualiser" />
+        </HBox>
+
+        <!-- Status Filters -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox fx:id="allBox" styleClass="status-box">
+                <Text fx:id="allCount" styleClass="header-text" />
+                <Label styleClass="subheader-text" text="Toutes" />
+            </VBox>
+            <VBox fx:id="pendingBox" styleClass="status-box">
+                <Text fx:id="pendingCount" style="-fx-fill: #dc3545;" styleClass="header-text" />
+                <Label styleClass="subheader-text" text="En attente" />
+            </VBox>
+            <VBox fx:id="inProgressBox" styleClass="status-box">
+                <Text fx:id="inProgressCount" style="-fx-fill: #ffc107;" styleClass="header-text" />
+                <Label styleClass="subheader-text" text="En cours" />
+            </VBox>
+            <VBox fx:id="resolvedBox" styleClass="status-box">
+                <Text fx:id="resolvedCount" style="-fx-fill: #28a745;" styleClass="header-text" />
+                <Label styleClass="subheader-text" text="Résolues" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Status Update Box -->
+    <VBox fx:id="statusUpdateBox" managed="false" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" visible="false">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-weight: bold;" text="Nouveau statut:" />
+            <ComboBox fx:id="statusComboBox" prefWidth="150" />
+            <Button fx:id="updateStatusButton" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;" text="Mettre à jour" />
+            <Button fx:id="cancelStatusButton" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold;" text="Annuler" />
+        </HBox>
+    </VBox>
+
+    <!-- Reclamations Container -->
+    <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+        <VBox fx:id="reclamationsContainer" spacing="15" style="-fx-padding: 20;">
+            <!-- Les cartes de réclamation seront ajoutées dynamiquement ici -->
+        </VBox>
+    </ScrollPane>
+</VBox>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Controlles.StatistiquesController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER">
+        <ComboBox fx:id="periodeComboBox" promptText="Période" />
+        <ComboBox fx:id="typeStatistiqueComboBox" promptText="Type de statistique" />
+        <ComboBox fx:id="typeGraphiqueComboBox" promptText="Type de graphique" />
+        <Button text="Actualiser" onAction="#handleActualiser" />
+    </HBox>
+
+    <StackPane fx:id="graphiqueContainer" VBox.vgrow="ALWAYS" />
+</VBox>

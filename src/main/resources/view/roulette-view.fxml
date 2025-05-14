@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="20" alignment="TOP_CENTER" stylesheets="@../styles/nature-theme.css" xmlns:fx="http://javafx.com/fxml" fx:controller="Controlles.RouletteController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Roulette de la Chance" styleClass="window-title"/>
+
+    <VBox styleClass="grid-pane" spacing="15" alignment="CENTER">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label fx:id="reductionLabel" text="?" styleClass="roulette-text">
+            <font>
+                <Font size="48"/>
+            </font>
+        </Label>
+
+        <Label fx:id="messageLabel" text="Tentez votre chance pour gagner une réduction !" styleClass="roulette-message"/>
+
+        <Button fx:id="tournerButton" text="Tourner la Roulette" onAction="#handleTournerRoulette" styleClass="roulette-button"/>
+
+        <VBox fx:id="resultatsBox" spacing="10" visible="false">
+            <Label text="Félicitations !" styleClass="roulette-message"/>
+            <Label fx:id="reductionMessageLabel" styleClass="roulette-message"/>
+            <Button text="Appliquer la Réduction" onAction="#handleAppliquerReduction"/>
+        </VBox>
+    </VBox>
+</VBox>

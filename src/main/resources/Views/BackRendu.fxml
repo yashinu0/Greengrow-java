@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controlles.BackRenduController" spacing="10" style="-fx-padding: 20;">
+
+   <Text fx:id="titleText" text="Add Rendu" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+   <GridPane style="-fx-padding: 15; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+             hgap="10" vgap="10">
+      <columnConstraints>
+         <ColumnConstraints halignment="RIGHT" minWidth="100"/>
+         <ColumnConstraints halignment="LEFT" minWidth="200"/>
+         <ColumnConstraints halignment="LEFT" minWidth="200"/>
+      </columnConstraints>
+
+      <Label text="Message:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+      <TextField fx:id="messageField" promptText="Enter message" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <Label fx:id="messageError" style="-fx-text-fill: red;" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+      <Label text="Type:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+      <TextField fx:id="typeField" promptText="Enter type" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+      <Label fx:id="typeError" style="-fx-text-fill: red;" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+      <Label text="Date:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+      <DatePicker fx:id="datePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+      <Label fx:id="dateError" style="-fx-text-fill: red;" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+   </GridPane>
+
+   <HBox spacing="10" alignment="CENTER">
+      <Button fx:id="actionButton" text="Add" onAction="#handleAction" 
+              style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80;"/>
+   </HBox>
+</VBox>
